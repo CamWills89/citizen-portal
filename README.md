@@ -36,3 +36,34 @@ Set up files
 	-link to rock the vote registration tool in html
 	-place at bottom of page?
 
+
+## things that work
+in google civic api:
+-use electionquery 
+-pull up all available elections everywhere
+
+-use voterinfoquery
+-using voter info, pulls up links to general voting info for state, polling location finders (tho some are broken links), 
+
+representatives call
+-based on user address, pull up representative from national to local(dropdown menu)
+
+### to do
+
+-make 3 buttons on landing page: "get to know my representatives", "get my general voter info link", 
+
+-make button that goes to rock the vote tool
+
+-make form that pops up from 'get to know my represenatives' button. asks for address and scope, then redirects to new page with representatives 
+        -dropdown menu again for scope using levels parameter (country-country, state-adminarea1, county-adminarea2)
+        -clickable representative name that goes to modal with info including office, party, phone number, website
+
+ "get more info about voting in your area" button
+ -when clicked, calls voterinfoquery (w/ general election hardcoded, can have option for dropdown later if possible), get election info url for user area and display
+ -register to vote tool in here
+ -info about general election, reminder button
+ -if rich can fix our problem, populate map with polling locations, 
+ -figure out how to convert coordinates to an address       
+
+
+-study google calendar api, see if we can make reminder for general election
