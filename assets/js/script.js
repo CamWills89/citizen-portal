@@ -15,7 +15,7 @@ let electionsApi = function () {
   fetch(apiUrl)
     .then(function (response) {
       return response.json();
-      console.log(response);
+      // console.log(response);
     })
     .then(function (data) {
       console.log(data);
@@ -25,12 +25,12 @@ let electionsApi = function () {
 let voterInfoApi = function () {
   //this one isn't working, missing a "voter_key", which I think is an address, but it's not accepting any i put in
   let apiUrl =
-    "https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE&address=8553%20N%20Capital%20Of%20Texas%20Hwy,%201107";
-
+    // "https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE&address=8553%20N%20Capital%20Of%20Texas%20Hwy,%201107";
+  "https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=8553%20N%20Capital%20Of%20Texas%20Hwy%2C%201107&officialOnly=true&returnAllAvailableData=true&key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE"
   fetch(apiUrl)
     .then(function (response) {
       return response.json();
-      console.log(response);
+      // console.log(response);
     })
     .then(function (data) {
       console.log(data);
@@ -95,5 +95,5 @@ let representativesApi = function () {
 // }
 
 electionsApi();
-// voterInfoApi();
-representativesApi();
+voterInfoApi();
+// representativesApi();
