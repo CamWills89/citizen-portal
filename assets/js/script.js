@@ -26,7 +26,7 @@ let voterInfoApi = function () {
   //this one isn't working, missing a "voter_key", which I think is an address, but it's not accepting any i put in
   let apiUrl =
     // "https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE&address=8553%20N%20Capital%20Of%20Texas%20Hwy,%201107";
-  "https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=8553%20N%20Capital%20Of%20Texas%20Hwy%2C%201107&officialOnly=true&returnAllAvailableData=true&key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE"
+  "https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=8553%20N%20Capital%20Of%20Texas%20Hwy%2C%201107&returnAllAvailableData=true&requestBody=true&electionId=7000&key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE"
   fetch(apiUrl)
     .then(function (response) {
       return response.json();
@@ -39,7 +39,7 @@ let voterInfoApi = function () {
 
 let representativesApi = function () {
   let apiUrl =
-    "https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE&address=8553%20N%20Capital%20Of%20Texas%20Hwy,%201107";
+    "https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE&levels=administrativeArea1&address=8553%20N%20Capital%20Of%20Texas%20Hwy,%201107";
 
   fetch(apiUrl)
     .then(function (response) {
@@ -51,31 +51,47 @@ let representativesApi = function () {
     });
 };
 
+
+let ballotApi = function () {
+  let apiUrl =
+    "https://webservices.sos.state.tx.us/ballot-cert/report.aspx?key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE&address=8553%20N%20Capital%20Of%20Texas%20Hwy,%201107";
+
+  fetch(apiUrl)
+    .then(function (response) {
+      return response.json();
+      console.log(response);
+    })
+    .then(function (data) {
+      console.log(data);
+    });
+};
 //geolocation map from google api
 
-// var map, infoWindow;
-// function initMap() {
-//   map = new google.maps.Map(document.getElementById("map"), {
-//     center: { lat: -34.397, lng: 150.644 },
-//     zoom: 6,
-//   });
-//   infoWindow = new google.maps.InfoWindow();
+var map, infoWindow;
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 6,
+  });
+  infoWindow = new google.maps.InfoWindow();
 
-//   // Try HTML5 geolocation.
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(function (position) {
-//       var pos = {
-//         lat: position.coords.latitude,
-//         lng: position.coords.longitude,
-//       };
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
 
-//       infoWindow.setPosition(pos);
-//       infoWindow.setContent("You are here.");
-//       infoWindow.open(map);
-//       map.setCenter(pos);
-//     });
-//   }
-// }
+      infoWindow.setPosition(pos);
+      infoWindow.setContent("You are here.");
+      infoWindow.open(map);
+      map.setCenter(pos);
+    });
+  }
+}
+
+
 
 //error handling
 //  else {
@@ -97,3 +113,4 @@ let representativesApi = function () {
 electionsApi();
 voterInfoApi();
 // representativesApi();
+// ballotApi();
