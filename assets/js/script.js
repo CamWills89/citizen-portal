@@ -8,34 +8,8 @@ $("#voting-search").on("click", function () {
   $(".modal").addClass("is-active");
 });
 
-let electionsApi = function () {
-  let apiUrl =
-    "https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE";
 
-  fetch(apiUrl)
-    .then(function (response) {
-      return response.json();
-      // console.log(response);
-    })
-    .then(function (data) {
-      console.log(data);
-    });
-};
 
-let voterInfoApi = function () {
-  //this one isn't working, missing a "voter_key", which I think is an address, but it's not accepting any i put in
-  let apiUrl =
-    // "https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE&address=8553%20N%20Capital%20Of%20Texas%20Hwy,%201107";
-  "https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=8553%20N%20Capital%20Of%20Texas%20Hwy%2C%201107&returnAllAvailableData=true&requestBody=true&electionId=7000&key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE"
-  fetch(apiUrl)
-    .then(function (response) {
-      return response.json();
-      // console.log(response);
-    })
-    .then(function (data) {
-      console.log(data);
-    });
-};
 
 let representativesApi = function () {
   let apiUrl =
@@ -108,7 +82,6 @@ function initMap() {
 //   infoWindow.open(map);
 // }
 
-electionsApi();
-voterInfoApi();
+
 // representativesApi();
 // ballotApi();
