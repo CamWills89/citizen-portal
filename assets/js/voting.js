@@ -1,6 +1,4 @@
 //this JS file is for displaying election date and register to vote
-let electionNameEl = document.querySelector(".election-name");
-let electionDayEl = document.querySelector(".election-day");
 let electionDayContainerEl = document.querySelector(".election-display");
 let voterInfoEl = document.querySelector(".voter-info");
 let addressEl = document.querySelector("#search");
@@ -38,20 +36,6 @@ let electionDisplay = function (address) {
     })
     .then(function (data) {
 
-      //if we want a dropdown
-      // var electionEL = document.getElementById('election')
-      // console.log(election);
-
-      // for (var i = 1; i < data.elections.length; i++) {
-
-      //   // console.log(data.elections[i].id);
-      //   // console.log();
-      //   var electionOption = document.createElement("option");
-      //   electionOption.setAttribute("value", data.elections[i].id)
-      //   electionOption.textContent = data.elections[i].name
-      //   electionEL.appendChild(electionOption)
-      // }
-
       // console.log(data);
 
       //this is to display all upcoming elections
@@ -65,7 +49,6 @@ let electionDisplay = function (address) {
             var electionDay = document.createElement("p");
             electionDay.textContent = electionDate;
             electionDayContainerEl.appendChild(electionDay);
-        
       }
     
       //if we want to just display general election
@@ -75,7 +58,7 @@ let electionDisplay = function (address) {
       // electionDayEl.innerHTML = electionDay;
 
       let voterApiUrl =
-        "https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=" + address + "&returnAllAvailableData=true&requestBody=true&electionId=7000&key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE";
+        "https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=" + address + "&returnAllAvailableData=true&requestBody=true&electionId=5016&key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE";
       fetch(voterApiUrl)
         .then(function (response) {
           if (response.ok) {
@@ -106,6 +89,5 @@ let electionDisplay = function (address) {
     });
 };
 
-// electionDisplay();
-// selectElection();
+
 addressFormEl.addEventListener("submit", searchHandler);
