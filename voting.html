@@ -1,28 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voter Information</title>
 </head>
+
 <body>
     <h1>Upcoming Elections</h1>
-
-    <div>
+    <!-- this is the dropdown option -->
+    <!-- <div>
         <label for="election">Select Election:</label>
         <select name="" id="election">
             
         </select>
-    </div>
+    </div> -->
     <div class="election-display">
-        <h2 class="election-name">Election</h2>
-        <p class="election-day">date</p>
-    </div>
-    <div class="voter-info">
-    
+        <h2 class="election-name"></h2>
+        <p class="election-day"></p>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js" integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg==" crossorigin="anonymous"></script>
+    <h3 class="pt-1" for="search">Search for your Address:</h3>
+    <form id="address-form">
+        <div>
+            <input type="text" id="search" placeholder="Enter Address/City">
+            <button class="search" type="submit">Search!</button>
+        </div>
+    </form>
+    <div class="voter-info">
+        <h3 class="website-name"></h3>
+        <a class="website-link"></a>
+    </div>
+
+    <div>
+        <h2>Register to Vote Below</h2>
+    </div>
+    <!-- <script type="text/javascript" src="https://register.rockthevote.com/assets/rtv-iframe.js"></script>
+    <script type="text/javascript">
+        RtvIframe.init({
+            partner: 1,
+            source: "ovrpage"
+        })
+    </script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+        integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg=="
+        crossorigin="anonymous"></script>
     <script src="/assets/js/voting.js"></script>
 </body>
+
 </html>
