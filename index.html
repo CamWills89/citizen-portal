@@ -58,9 +58,16 @@
       </div>
     </div>
   </section>
+
+  <!--buttons-->
   <div class="columns">
     <button type="submit" class="column is-centered" id="voting-search">Get Started!</button>
   </div>
+
+  <div class="columns">
+    <button type="submit" class="column is-centered" id="representative-btn">Get to know my Representatives</button>
+  </div>
+
   <!--modal-->
   <div class="modal">
     <div class="modal-background"></div>
@@ -74,7 +81,36 @@
       </section>
       <footer class="modal-card-foot">
         <button class="button is-success">Save changes</button>
-        <button class="button">Cancel</button>
+        <button class="button" id="cancel-btn">Cancel</button>
+      </footer>
+    </div>
+  </div>
+
+
+  <!--representatives modal-->
+  <div class="modal" id="rep-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Enter address to find your reps!</p>
+        <button class="delete" id="repMod-delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <!-- Content ... -->
+        <input class="input" type="text" id="repMod-input" placeholder="123 Jump st Austin, TX 78755">
+        <!--dropdown menu for scope-->
+        <form name="form1" id="form1" action="/action_page.php">
+            Scope: <select name="scope" id="scope">
+              <option value="country" selected="selected">National</option>
+              <option value="administrativeArea1">State</option>
+              <option value="administrativeArea2">County</option>
+           </select>
+          </form>
+          <div id="repMod-result"></div>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-success" id="repMod-submit">Let's Go!</button>
+        <button class="button" id="repMod-cancel">Cancel</button>
       </footer>
     </div>
   </div>
