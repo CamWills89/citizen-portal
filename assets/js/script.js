@@ -53,8 +53,10 @@ $("#repMod-cancel").on("click", function () {
 })
 
 $("#repMod-submit").on("click", function () {
-    var userAddress = $("#repMod-input").val()
+    var userAddress = $("#repMod-input").val() //sessionStorage.getItem(key)
     console.log(userAddress)
+    // window.location = "candidates.hmtl"
+
 
     var scope = $("#scope").val()
 
@@ -75,27 +77,28 @@ $("#repMod-submit").on("click", function () {
                 //doesn't work for state level because there are multiple indices arrays with an index of more than 1
                 //look up for each function, indexOf
 
-                for (i = 0; i < data.offices.length; i++) {
+                for (let i = 0; i < data.offices.length; i++) {
                     officesIndex = data.offices[i]
                     var officialsIndex = officesIndex.officialIndices
                     // console.log(officesIndex.name + " " + officialsIndex + "name? ");
 
                     var officeTitle = $("#repMod-result").append($("<p>").text(officesIndex.name))
 
-                    if (data.offices[i].officialIndices.length > 1) {
+                    if (data.offices[i].officialIndices) {
                         // console.log("2 or more");
                         var indicesArr = data.offices[i].officialIndices
-                        for (i = 0; i < indicesArr.length; i++) {
+                        for (let j = 0; j < indicesArr.length; j++) {
 
                             console.log("hello");
 
-                            officeTitle.append($("<li>").text(data.officials[indicesArr[i]].name))
+                            officeTitle.append($("<li>").text(data.officials[indicesArr[j]].name))
 
                         }
 
-                    } else {
-                        officeTitle.append($("<li>").text(data.officials[officialsIndex].name))
-                    }
+                    } 
+                    // else {
+                    //     officeTitle.append($("<li>").text(data.officials[officialsIndex].name))
+                    // }
 
 
                 }
