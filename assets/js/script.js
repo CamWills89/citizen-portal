@@ -5,166 +5,42 @@
 let VotingSearchEl = document.querySelector("#voting-search");
 
 $("#voting-search").on("click", function () {
-    $(".modal").addClass("is-active");
+    window.location = "voting.html"
 });
 
-let electionsApi = function () {
-    let apiUrl =
-        "https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE";
+   // Try HTML5 geolocation.
+   if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
 
-    fetch(apiUrl)
-        .then(function (response) {
-            return response.json();
-            // console.log(response);
-        })
-        .then(function (data) {
-            console.log(data);
-        });
-};
-
-let voterInfoApi = function () {
-    //this one isn't working, missing a "voter_key", which I think is an address, but it's not accepting any i put in
-    let apiUrl =
-        // "https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE&address=8553%20N%20Capital%20Of%20Texas%20Hwy,%201107";
-        "https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=8553%20N%20Capital%20Of%20Texas%20Hwy%2C%201107&returnAllAvailableData=true&requestBody=true&electionId=7000&key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE"
-    fetch(apiUrl)
-        .then(function (response) {
-            return response.json();
-            // console.log(response);
-        })
-        .then(function (data) {
-            console.log(data);
-        });
-};
+        };
+        console.log(pos)
+    }) 
+}
 
 
 //REPRESENTATIVES section
 
+$("#errorMod-delete").on("click", function () {
+    $("#error-modal").removeClass("is-active")
+})
+
 $("#representative-btn").on("click", function () {
-    $("#rep-modal").addClass("is-active");
-});
-
-$("#repMod-delete").on("click", function () {
-    $("#rep-modal").removeClass("is-active")
-})
-
-$("#repMod-cancel").on("click", function () {
-    $("#rep-modal").removeClass("is-active")
-})
-
-$("#repMod-submit").on("click", function () {
-    var userAddress = $("#repMod-input").val() //sessionStorage.getItem(key)
+    var userAddress = $("#address").val() 
     console.log(userAddress)
-    // window.location = "candidates.hmtl"
-
-
-    //starting here new page representatives.js. 
-    //on representatives.html just scope dropdown (or buttons), then append info to page (using localStorage address in fetch call). 
-    //make <li> clickable to pop up modal more info on person 
-    var scope = $("#scope").val() 
-
-
-    let representativesApi = function () {
-        $("#repMod-result").text("")
-        let apiUrl =
-            `https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE&levels=${scope}&address=${userAddress}`;
-
-        fetch(apiUrl)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                console.log(data);
-
-                for (let i = 0; i < data.offices.length; i++) {
-                    officesIndex = data.offices[i]
-                    var officialsIndex = officesIndex.officialIndices
-                    // console.log(officesIndex.name + " " + officialsIndex + "name? ");
-
-                    var officeTitle = $("#repMod-result").append($("<p>").text(officesIndex.name))
-
-                    if (data.offices[i].officialIndices) {
-                        // console.log("2 or more");
-                        var indicesArr = data.offices[i].officialIndices
-                        for (let j = 0; j < indicesArr.length; j++) {
-
-                            console.log("hello");
-
-                            officeTitle.append($("<li>").text(data.officials[indicesArr[j]].name))
-
-                        }
-                    }
-
-                }
-            })
-
-    };
-    representativesApi()
+    console.log("click!");
+    
+    if (userAddress==="" & !localStorage.getItem("address")){
+        $("#error-modal").addClass("is-active")
+    }
+    else {
+        localStorage.setItem("address", userAddress)
+        window.location = "candidates.html"
+    }
 
 });
 
 
-
-
-
-
-
-let ballotApi = function () {
-    let apiUrl =
-        "https://webservices.sos.state.tx.us/ballot-cert/report.aspx?key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE&address=8553%20N%20Capital%20Of%20Texas%20Hwy,%201107";
-
-    fetch(apiUrl)
-        .then(function (response) {
-            return response.json();
-            console.log(response);
-        })
-        .then(function (data) {
-            console.log(data);
-        });
-};
-//geolocation map from google api
-
-var map, infoWindow;
-function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 6,
-    });
-    infoWindow = new google.maps.InfoWindow();
-
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent("You are here.");
-            infoWindow.open(map);
-            map.setCenter(pos);
-        });
-    }
-}
-
-//error handling
-//  else {
-//     // Browser doesn't support Geolocation
-//     handleLocationError(false, infoWindow, map.getCenter());
-//   }
-
-
-// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-//   infoWindow.setPosition(pos);
-//   infoWindow.setContent(
-//     browserHasGeolocation
-//       ? "Error: The Geolocation service failed."
-//       : "Error: Your browser doesn't support geolocation."
-//   );
-//   infoWindow.open(map);
-// }
-
-
-// representativesApi();
-// ballotApi();
+ 
