@@ -8,7 +8,6 @@ $("#voting-search").on("click", function () {
     $(".modal").addClass("is-active");
 });
 
-<<<<<<< HEAD
 let electionsApi = function () {
     let apiUrl =
         "https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE";
@@ -37,10 +36,6 @@ let voterInfoApi = function () {
             console.log(data);
         });
 };
-=======
-
-
->>>>>>> b931ca2df9f9b0850d789e21eea6f814a2901f8c
 
 
 //REPRESENTATIVES section
