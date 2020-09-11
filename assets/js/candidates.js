@@ -38,6 +38,7 @@ $(".scopeBtn").on("click", function(){
                             var party = data.officials[indicesArr[j]].party
                             var phone = data.officials[indicesArr[j]].phones
                             var website = data.officials[indicesArr[j]].urls
+                            //add twitter
                             //create new element
                             var newLi = $("<li>").text(data.officials[indicesArr[j]].name)
                             //append all attributes to new li
@@ -65,6 +66,7 @@ $(".result").on("click", "li", function(){
     $("#party").text($(this).attr("data-party"))
     $("#website").text($(this).attr("data-website"))
     $("#phone").text($(this).attr("data-phone"))
+    //add twitter
     //trigger modal
     $("#rep-modal").addClass("is-active")
 })
