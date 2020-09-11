@@ -50,7 +50,7 @@ representatives call
 
 ### to do
 
--make 3 buttons on landing page: "get to know my representatives", "get my general voter info link", 
+-make 2 buttons on landing page: "get to know my representatives", "get my general voter info link", 
 
 -make button that goes to rock the vote tool
 
