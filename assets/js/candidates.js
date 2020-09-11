@@ -31,14 +31,23 @@ $(".scopeBtn").on("click", function(){
                     var officeTitle = $(".result").append($("<p>").text(officesIndex.name))
 
                     if (data.offices[i].officialIndices) {
-                        // console.log("2 or more");
+                        
                         var indicesArr = data.offices[i].officialIndices
                         for (let j = 0; j < indicesArr.length; j++) {
                             //set variables to add info to each li to extract when clicked
                             var party = data.officials[indicesArr[j]].party
-
-                            var newLi = officeTitle.append($("<li>").text(data.officials[indicesArr[j]].name))
-                            newLi.addClass(party)
+                            var phone = data.officials[indicesArr[j]].phones
+                            var website = data.officials[indicesArr[j]].urls
+                            //create new element
+                            var newLi = $("<li>").text(data.officials[indicesArr[j]].name)
+                            //append all attributes to new li
+                            newLi.attr("data-party",party)
+                            newLi.attr("data-phone", phone)
+                            newLi.attr("data-website", website)
+                            //append new li to corresponding office title
+                            officeTitle.append(newLi)
+                        
+                            
                         }
 
                     } 
@@ -51,9 +60,12 @@ $(".scopeBtn").on("click", function(){
 
 //make li clickable
 $(".result").on("click", "li", function(){
-    console.log("clicky!");
+    //extract data attributes and append 
     $(".modal-card-title").text($(this).text())
-    $("#repMod-result").text($(this).attr("class"))
+    $("#party").text($(this).attr("data-party"))
+    $("#website").text($(this).attr("data-website"))
+    $("#phone").text($(this).attr("data-phone"))
+    //trigger modal
     $("#rep-modal").addClass("is-active")
 })
 
