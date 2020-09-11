@@ -2,12 +2,6 @@
 //claire's api key google civic AIzaSyBuB1fEZKUXfj7JWkm-7hKc8f6JS99iCPE
 //cameron's google civic api AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE
 
-let VotingSearchEl = document.querySelector("#voting-search");
-
-$("#voting-search").on("click", function () {
-    window.location = "voting.html"
-});
-
    // Try HTML5 geolocation.
    if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -20,13 +14,13 @@ $("#voting-search").on("click", function () {
     }) 
 }
 
-
 //REPRESENTATIVES section
 
 $("#errorMod-delete").on("click", function () {
     $("#error-modal").removeClass("is-active")
 })
 
+//Local storage for representatives button
 $("#representative-btn").on("click", function () {
     var userAddress = $("#address").val() 
     console.log(userAddress)
@@ -43,6 +37,7 @@ $("#representative-btn").on("click", function () {
 
 });
 
+//Local storage for voter info button
 $("#voting-search").on("click", function () {
     var userAddress = $("#address").val() 
     console.log(userAddress)

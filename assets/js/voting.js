@@ -7,20 +7,11 @@ var websiteName = document.querySelector(".website-name");
 var websiteAddress = document.querySelector(".website-link");
 // console.log(addressEl);
 
-var searchHandler = function (event) {
-  event.preventDefault();
-  // //get the text from the input field
-  var address = addressEl.value.trim();
-  // //use the text to display weather data and create a search history list
-  if (address) {
-    // console.log(address);
-    addressEl.value = "";
-    electionDayContainerEl.textContent = "";
-    electionDisplay(address)
-  } else {
-    return;
-  }
-}
+
+//Google Calerndar API key = AIzaSyBWS5bz2ZlYk-Xj5qHqXGi_xy0sajaaaiU
+//Google Calerndar CLIENT_ID = '996409993869-uormhtchi585ojoh31temputj9kn200f.apps.googleusercontent.com'
+
+var userAddress =localStorage.getItem("address");
 
 let electionDisplay = function (address) {
   let apiUrl =
@@ -35,8 +26,6 @@ let electionDisplay = function (address) {
       }
     })
     .then(function (data) {
-
-      // console.log(data);
 
       //this is to display all upcoming elections
       for (let i = 1; i < data.elections.length; i++) {
@@ -58,7 +47,7 @@ let electionDisplay = function (address) {
       // electionDayEl.innerHTML = electionDay;
 
       let voterApiUrl =
-        "https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=" + address + "&returnAllAvailableData=true&requestBody=true&electionId=5016&key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE";
+        "https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=" + userAddress + "&returnAllAvailableData=true&requestBody=true&electionId=5016&key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE";
       fetch(voterApiUrl)
         .then(function (response) {
           if (response.ok) {
@@ -89,5 +78,4 @@ let electionDisplay = function (address) {
     });
 };
 
-
-addressFormEl.addEventListener("submit", searchHandler);
+electionDisplay();
