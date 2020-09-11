@@ -88,6 +88,8 @@ $(".result").on("click", "li", function () {
 
     $("#party").text("Party: "+$(this).attr("data-party"))
 
+    //empty website
+    $("#website").empty()
     var url =$(this).attr("data-website")
     $("#website").append($("<a>").attr("href", url).text("Website: "+url))
 
