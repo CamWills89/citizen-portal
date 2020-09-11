@@ -58,7 +58,10 @@ $("#repMod-submit").on("click", function () {
     // window.location = "candidates.hmtl"
 
 
-    var scope = $("#scope").val()
+    //starting here new page representatives.js. 
+    //on representatives.html just scope dropdown (or buttons), then append info to page (using localStorage address in fetch call). 
+    //make <li> clickable to pop up modal more info on person 
+    var scope = $("#scope").val() 
 
 
     let representativesApi = function () {
@@ -72,10 +75,6 @@ $("#repMod-submit").on("click", function () {
             })
             .then(function (data) {
                 console.log(data);
-
-
-                //doesn't work for state level because there are multiple indices arrays with an index of more than 1
-                //look up for each function, indexOf
 
                 for (let i = 0; i < data.offices.length; i++) {
                     officesIndex = data.offices[i]
@@ -94,48 +93,9 @@ $("#repMod-submit").on("click", function () {
                             officeTitle.append($("<li>").text(data.officials[indicesArr[j]].name))
 
                         }
-
-                    } 
-                    // else {
-                    //     officeTitle.append($("<li>").text(data.officials[officialsIndex].name))
-                    // }
-
+                    }
 
                 }
-
-                //
-
-                //for each official, if index is in data.offices[i].officialIndices, append official[i] to officeTitle, else return
-
-                //         for (i = 0; i < data.offices.length; i++) {
-                //             officesIndex = data.offices[i]
-                //             var officialsIndex = officesIndex.officialIndices
-                //             console.log(officesIndex.name + " " + officialsIndex);
-
-                //             var officeTitle = $("#repMod-result").append($("<p>").text(officesIndex.name))
-                //  var arr = data.officials
-                //  arr.filter(function(i){
-                //      if(officialsIndex.includes()){
-
-                //      }
-                //  })
-                //   }
-
-                // for (i = 0; i < data.officials.length; i++) {
-                //     officeTitle.append($("<li>").text(data.officials[i].name))
-
-
-
-                // if (officialsIndex.includes(data.officials.index)) {
-                //     officeTitle.append($("<li>").text(data.officals[i].name))
-                // } else {
-                //     return
-                // }
-                // }
-
-
-
-
             })
 
     };
