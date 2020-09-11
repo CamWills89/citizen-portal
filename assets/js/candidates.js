@@ -82,13 +82,18 @@ let representativesApi = function (scope) {
 
 //make representative li clickable
 $(".result").on("click", "li", function () {
+
     //extract data attributes and append to modal
     $(".modal-card-title").text($(this).text())
-    $("#party").text($(this).attr("data-party"))
-    $("#website").text($(this).attr("data-website"))
+
+    $("#party").text("Party: "+$(this).attr("data-party"))
+
+    var url =$(this).attr("data-website")
+    $("#website").append($("<a>").attr("href", url).text("Website: "+url))
+
     $("#phone").text($(this).attr("data-phone"))
 
-    //empty p's 
+    //empty socials p's 
     $("#socialOne").text("")
     $("#socialTwo").text("")
 
