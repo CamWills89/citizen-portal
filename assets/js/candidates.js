@@ -88,6 +88,10 @@ $(".result").on("click", "li", function () {
     $("#website").text($(this).attr("data-website"))
     $("#phone").text($(this).attr("data-phone"))
 
+    //empty p's 
+    $("#socialOne").text("")
+    $("#socialTwo").text("")
+
     //extract socials data attributes if they exist, append to modal
     if ($(this).attr("data-socialType-1")) {
         $("#socialOne").text($(this).attr("data-socialType-1") + ": " + $(this).attr("data-socialID-1"))
