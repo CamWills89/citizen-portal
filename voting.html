@@ -25,11 +25,21 @@
         <button><a href="https://register.rockthevote.com/?partner=38861" target="_blank">Register to Vote
                 Here</a></button>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
-        integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg=="
-        crossorigin="anonymous"></script>
 
+    <div id='content'>
+        <h1>Events</h1>
+        <ul id='events'></ul>
+    </div>
+    <iframe
+        src="https://calendar.google.com/calendar/embed?src=d1be1nro15qcja1psp9fd1pdck%40group.calendar.google.com&ctz=America%2FToronto"
+        style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+    integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg=="
+    crossorigin="anonymous"></script>
     <script src="/assets/js/voting.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=onLoadGapiClient"></script>
 </body>
 
 </html>
