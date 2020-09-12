@@ -14,7 +14,7 @@
 
 <body>
 
-  <section class="hero is-primary is-mobile">
+  <section class="hero is-link is-mobile">
     <!-- Hero head: will stick at the top -->
     <div class="hero-head">
       <nav class="navbar">
@@ -60,19 +60,24 @@
   </section>
 
   <!--buttons-->
-  <form>
+  <section id="enter-your-address">
+  <form class="has-text-centered" id="">
+<br><br>
     <label for="address">Enter your address:</label><br>
     <input type="text" id="address"><br>
-    <input type="submit" value="Submit">
+    <br><br>
   </form>
-  <br><br>
-  <div class="columns">
-    <button type="submit" class="column is-centered" id="voting-search">get voter info</button>
+  
+  <section class="columns is-mobile">
+  <div class="column is-mobile">
+    <button type="submit" class="column" id="voting-search">get voter info</button>
   </div>
 
-  <div class="columns">
-    <button type="submit" class="column is-centered" id="representative-btn">Get to know my Representatives</button>
+  <div class="column is-mobile">
+    <button type="submit" class="column" id="representative-btn">Get to know my Representatives</button>
   </div>
+</section>
+  </section>
 
   <!--representatives modal-->
   <!-- <div class="modal" id="rep-modal">
