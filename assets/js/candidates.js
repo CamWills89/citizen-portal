@@ -127,7 +127,7 @@ console.log("LOOK "+name);
                 var newP = $("<p>")
                 newP.text(data.response.docs[i].headline.main)
                 var articleUrl = data.response.docs[i].web_url
-                newP.append($("<a>").attr("href", articleUrl).text(articleUrl))
+                newP.append($("<a>").attr("href", articleUrl).attr("target", "_blank").text(articleUrl))
 
 
                 $(".news").append(newP)

@@ -1,33 +1,17 @@
 //this JS file is for displaying election date and register to vote
 let electionDayContainerEl = document.querySelector(".election-display");
 let voterInfoEl = document.querySelector(".voter-info");
-let addressEl = document.querySelector("#search");
-let addressFormEl = document.querySelector("#address-form");
 var websiteName = document.querySelector(".website-name");
 var websiteAddress = document.querySelector(".website-link");
-// console.log(addressEl);
-
-var newsApi = function() {
-
-  var apiUrl = "https://content.guardianapis.com/search?q=US-2020-General-Election&tag=politics/politics&from-date=2019-01-01&api-key=0c8644d5-c3da-4714-81d4-f278872461fe"
-  
-  
-  fetch(apiUrl)
-      .then(function (response) {
-          return response.json();
-
-      })
-      .then(function (data) {
-        console.log(data);
-})
-}
-
-newsApi();
+var newsModalEl = document.querySelector("#news-modal");
+var newsModalDeleteEl = document.querySelector("#news-modal-delete");
+var modalHeading = document.querySelector(".modal-card-title");
+// console.log(modalHeading);
 
 
 var userAddress = localStorage.getItem("address");
 
-let electionDisplay = function (address) {
+let electionDisplay = function () {
   let apiUrl =
     "https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE";
 
@@ -74,7 +58,7 @@ let electionDisplay = function (address) {
             "Visit the " +
             siteName +
             " website to learn more details about upcoming elections relevant to you.";
-          websiteAddress.textContent = "Click Here to go to the Website";
+          websiteAddress.textContent = "Get More Information from the State's Webiste";
           websiteAddress.setAttribute("href", siteAddress);
           websiteAddress.setAttribute("target", "_blank");
 
@@ -82,8 +66,48 @@ let electionDisplay = function (address) {
           voterInfoEl.appendChild(websiteAddress);
 
           // console.log(data);
+
         });
     });
 };
+
+let displayNewsHandler = function (event) {
+  var modalTarget = event.target;
+  if (event.target.matches("h2")) {
+    newsModalEl.classList.add("is-active")
+  }
+
+  var electionName = modalTarget.textContent
+  modalHeading.textContent = electionName;
+
+  //get news articles with person's name
+  var apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${electionName}&election&news_desk=politics&api-key=0LjGSIV1PXpRyRsQkYxlhQe10ryACGHV`
+
+  fetch(apiUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+
+      $(".news").empty()
+
+      for (let i = 0; i < 5; i++) {
+        let newP = $("<p>")
+        newP.text(data.response.docs[i].headline.main)
+        let articleUrl = data.response.docs[i].web_url
+        newP.append($("<a>").attr("href", articleUrl).attr("target", "_blank").text(articleUrl))
+
+        $(".news").append(newP)
+      }
+    });
+}
+
+//event listneners
+document.addEventListener("click", displayNewsHandler);
+//Remove modal
+newsModalDeleteEl.addEventListener("click", function (event) {
+  newsModalEl.classList.remove("is-active")
+});
 
 electionDisplay();
