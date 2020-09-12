@@ -1,15 +1,16 @@
 //this JS file is for displaying election date and register to vote
 let electionDayContainerEl = document.querySelector(".election-display");
 let voterInfoEl = document.querySelector(".voter-info");
-var websiteName = document.querySelector(".website-name");
-var websiteAddress = document.querySelector(".website-link");
-var newsModalEl = document.querySelector("#news-modal");
-var newsModalDeleteEl = document.querySelector("#news-modal-delete");
-var modalHeading = document.querySelector(".modal-card-title");
+let websiteNameEl = document.querySelector(".website-name");
+let websiteAddressElEl = document.querySelector(".website-link");
+let newsModalEl = document.querySelector("#news-modal");
+let newsModalContentEl = document.querySelector(".news");
+let newsModalDeleteEl = document.querySelector("#news-modal-delete");
+let modalHeading = document.querySelector(".modal-card-title");
 // console.log(modalHeading);
 
 
-var userAddress = localStorage.getItem("address");
+let userAddress = localStorage.getItem("address");
 
 let electionDisplay = function () {
   let apiUrl =
@@ -27,13 +28,13 @@ let electionDisplay = function () {
 
       //this is to display all upcoming elections
       for (let i = 1; i < data.elections.length; i++) {
-        var electionName = document.createElement("h2");
+        let electionName = document.createElement("h2");
         electionName.textContent = data.elections[i].name;
         electionDayContainerEl.appendChild(electionName);
-        var electionDate = moment(data.elections[i].electionDay).format(
+        let electionDate = moment(data.elections[i].electionDay).format(
           "dddd, MMMM, Do, YYYY");
 
-        var electionDay = document.createElement("p");
+        let electionDay = document.createElement("p");
         electionDay.textContent = electionDate;
         electionDayContainerEl.appendChild(electionDay);
       }
@@ -49,56 +50,57 @@ let electionDisplay = function () {
           }
         })
         .then(function (data) {
-          var siteName = data.state[0].electionAdministrationBody.name;
-          var siteAddress =
+          let siteName = data.state[0].electionAdministrationBody.name;
+          let siteAddress =
             data.state[0].electionAdministrationBody.electionInfoUrl;
-          //   console.log(data);
 
-          websiteName.textContent =
+          websiteNameEl.textContent =
             "Visit the " +
             siteName +
             " website to learn more details about upcoming elections relevant to you.";
-          websiteAddress.textContent = "Get More Information from the State's Webiste";
-          websiteAddress.setAttribute("href", siteAddress);
-          websiteAddress.setAttribute("target", "_blank");
+          websiteAddressElEl.textContent = "Get More Information from the State's Webiste";
+          websiteAddressElEl.setAttribute("href", siteAddress);
+          websiteAddressElEl.setAttribute("target", "_blank");
 
-          voterInfoEl.appendChild(websiteName);
-          voterInfoEl.appendChild(websiteAddress);
-
-          // console.log(data);
-
+          voterInfoEl.appendChild(websiteNameEl);
+          voterInfoEl.appendChild(websiteAddressElEl);
         });
     });
 };
 
 let displayNewsHandler = function (event) {
-  var modalTarget = event.target;
+  let targetedModal = event.target;
   if (event.target.matches("h2")) {
     newsModalEl.classList.add("is-active")
   }
 
-  var electionName = modalTarget.textContent
+  let electionName = targetedModal.textContent
   modalHeading.textContent = electionName;
 
   //get news articles with person's name
-  var apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${electionName}&election&news_desk=politics&api-key=0LjGSIV1PXpRyRsQkYxlhQe10ryACGHV`
+  let apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${electionName}&election&news_desk=politics&api-key=0LjGSIV1PXpRyRsQkYxlhQe10ryACGHV`
 
   fetch(apiUrl)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
 
-      $(".news").empty()
+      newsModalContentEl.textContent = "";
 
+      //getting the 1st 5 articles and displaying them
       for (let i = 0; i < 5; i++) {
-        let newP = $("<p>")
-        newP.text(data.response.docs[i].headline.main)
-        let articleUrl = data.response.docs[i].web_url
-        newP.append($("<a>").attr("href", articleUrl).attr("target", "_blank").text(articleUrl))
+        let newsArticles = document.createElement("p");
+        newsArticles.innerHTML = data.response.docs[i].headline.main;
+        
+        let articleUrl = document.createElement("a");
+        let articleUrlLink = data.response.docs[i].web_url
+        articleUrl.innerHTML = articleUrlLink;
+        articleUrl.setAttribute("href", articleUrlLink);
+        articleUrl.setAttribute("target", "_blank");
 
-        $(".news").append(newP)
+        newsModalContentEl.appendChild(newsArticles);
+        newsModalContentEl.appendChild(articleUrl);
       }
     });
 }
