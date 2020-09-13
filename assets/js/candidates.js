@@ -24,7 +24,7 @@ let representativesApi = function (scope) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
+            // console.log(data);
             //loop thru office titles
             for (let i = 0; i < data.offices.length; i++) {
                 officesIndex = data.offices[i]
@@ -58,7 +58,7 @@ let representativesApi = function (scope) {
 
                                 var socialType = data.officials[indicesArr[j]].channels[k].type
                                 var socialID = data.officials[indicesArr[j]].channels[k].id
-                                console.log("social " + data.officials[indicesArr[j]].name + " " + socialType + " " + socialID);
+                                // console.log("social " + data.officials[indicesArr[j]].name + " " + socialType + " " + socialID);
 
                                 //append to new li
                                 newLi.attr("data-socialType-" + socialNum, socialType)
@@ -86,12 +86,12 @@ $(".result").on("click", "li", function () {
     //extract data attributes and append to modal
     $(".modal-card-title").text($(this).text())
 
-    $("#party").text("Party: "+$(this).attr("data-party"))
+    $("#party").text("Party: " + $(this).attr("data-party"))
 
-    //empty website
+    //empty website p
     $("#website").empty()
-    var url =$(this).attr("data-website")
-    $("#website").append($("<a>").attr("href", url).text("Website: "+url))
+    var url = $(this).attr("data-website")
+    $("#website").append($("<a>").attr("href", url).text("Website: " + url))
 
     $("#phone").text($(this).attr("data-phone"))
 
@@ -107,6 +107,36 @@ $(".result").on("click", "li", function () {
         $("#socialTwo").text($(this).attr("data-socialType-2") + ": " + $(this).attr("data-socialID-2"))
     }
 
+var name = $(this).text().split(" ").join("-")
+console.log("LOOK "+name);
+
+
+    //get news articles with person's name
+    var apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${name}&election&news_desk=politics&api-key=0LjGSIV1PXpRyRsQkYxlhQe10ryACGHV`
+
+    fetch(apiUrl)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+
+            $(".news").empty()
+
+            for (i = 0; i < 5; i++) {
+                var newP = $("<p>")
+                newP.text(data.response.docs[i].headline.main)
+                var articleUrl = data.response.docs[i].web_url
+                newP.append($("<a>").attr("href", articleUrl).attr("target", "_blank").text(articleUrl))
+
+
+                $(".news").append(newP)
+            }
+        })
+
+
+
+
     //trigger modal
     $("#rep-modal").addClass("is-active")
 })
@@ -115,3 +145,4 @@ $(".result").on("click", "li", function () {
 $("#repMod-delete").on("click", function () {
     $("#rep-modal").removeClass("is-active")
 })
+

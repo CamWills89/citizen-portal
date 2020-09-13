@@ -1,19 +1,18 @@
 //this JS file is for displaying election date and register to vote
 let electionDayContainerEl = document.querySelector(".election-display");
 let voterInfoEl = document.querySelector(".voter-info");
-let addressEl = document.querySelector("#search");
-let addressFormEl = document.querySelector("#address-form");
-var websiteName = document.querySelector(".website-name");
-var websiteAddress = document.querySelector(".website-link");
-// console.log(addressEl);
+let websiteNameEl = document.querySelector(".website-name");
+let websiteAddressElEl = document.querySelector(".website-link");
+let newsModalEl = document.querySelector("#news-modal");
+let newsModalContentEl = document.querySelector(".news");
+let newsModalDeleteEl = document.querySelector("#news-modal-delete");
+let modalHeading = document.querySelector(".modal-card-title");
+// console.log(modalHeading);
 
 
-//Google Calerndar API key = AIzaSyBWS5bz2ZlYk-Xj5qHqXGi_xy0sajaaaiU
-//Google Calerndar CLIENT_ID = '996409993869-uormhtchi585ojoh31temputj9kn200f.apps.googleusercontent.com'
+let userAddress = localStorage.getItem("address");
 
-var userAddress =localStorage.getItem("address");
-
-let electionDisplay = function (address) {
+let electionDisplay = function () {
   let apiUrl =
     "https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE";
 
@@ -29,25 +28,19 @@ let electionDisplay = function (address) {
 
       //this is to display all upcoming elections
       for (let i = 1; i < data.elections.length; i++) {
-          var electionName = document.createElement("h2");
-          electionName.textContent = data.elections[i].name;
-          electionDayContainerEl.appendChild(electionName);
-          var electionDate = moment(data.elections[i].electionDay).format(
-            "dddd, MMMM, Do, YYYY");
-            
-            var electionDay = document.createElement("p");
-            electionDay.textContent = electionDate;
-            electionDayContainerEl.appendChild(electionDay);
+        let electionName = document.createElement("h2");
+        electionName.textContent = data.elections[i].name;
+        electionDayContainerEl.appendChild(electionName);
+        let electionDate = moment(data.elections[i].electionDay).format(
+          "dddd, MMMM, Do, YYYY");
+
+        let electionDay = document.createElement("p");
+        electionDay.textContent = electionDate;
+        electionDayContainerEl.appendChild(electionDay);
       }
-    
-      //if we want to just display general election
-      // electionNameEl.innerHTML = data.elections[3].name;
-      // var electionDay = moment(data.elections[3].electionDay).format(
-      //   "dddd, MMMM, Do, YYYY");
-      // electionDayEl.innerHTML = electionDay;
 
       let voterApiUrl =
-        "https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=" + userAddress + "&returnAllAvailableData=true&requestBody=true&electionId=5016&key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE";
+        "https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=" + userAddress + "&returnAllAvailableData=true&requestBody=true&electionId=7000&key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE";
       fetch(voterApiUrl)
         .then(function (response) {
           if (response.ok) {
@@ -57,25 +50,66 @@ let electionDisplay = function (address) {
           }
         })
         .then(function (data) {
-          var siteName = data.state[0].electionAdministrationBody.name;
-          var siteAddress =
+          let siteName = data.state[0].electionAdministrationBody.name;
+          let siteAddress =
             data.state[0].electionAdministrationBody.electionInfoUrl;
-          //   console.log(data);
 
-          websiteName.textContent =
+          websiteNameEl.textContent =
             "Visit the " +
             siteName +
             " website to learn more details about upcoming elections relevant to you.";
-          websiteAddress.textContent = "Click Here to go to the Website";
-          websiteAddress.setAttribute("href", siteAddress);
-          websiteAddress.setAttribute("target", "_blank");
+          websiteAddressElEl.textContent = "Get More Information from the State's Webiste";
+          websiteAddressElEl.setAttribute("href", siteAddress);
+          websiteAddressElEl.setAttribute("target", "_blank");
 
-          voterInfoEl.appendChild(websiteName);
-          voterInfoEl.appendChild(websiteAddress);
-
-          console.log(data);
+          voterInfoEl.appendChild(websiteNameEl);
+          voterInfoEl.appendChild(websiteAddressElEl);
         });
     });
 };
+
+let displayNewsHandler = function (event) {
+  let targetedModal = event.target;
+  if (event.target.matches("h2")) {
+    newsModalEl.classList.add("is-active")
+  }
+
+  let electionName = targetedModal.textContent
+  modalHeading.textContent = electionName;
+
+  //get news articles with person's name
+  let apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${electionName}&election&news_desk=politics&api-key=0LjGSIV1PXpRyRsQkYxlhQe10ryACGHV`
+
+  fetch(apiUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+
+      newsModalContentEl.textContent = "";
+
+      //getting the 1st 5 articles and displaying them
+      for (let i = 0; i < 5; i++) {
+        let newsArticles = document.createElement("p");
+        newsArticles.innerHTML = data.response.docs[i].headline.main;
+        
+        let articleUrl = document.createElement("a");
+        let articleUrlLink = data.response.docs[i].web_url
+        articleUrl.innerHTML = articleUrlLink;
+        articleUrl.setAttribute("href", articleUrlLink);
+        articleUrl.setAttribute("target", "_blank");
+
+        newsModalContentEl.appendChild(newsArticles);
+        newsModalContentEl.appendChild(articleUrl);
+      }
+    });
+}
+
+//event listneners
+document.addEventListener("click", displayNewsHandler);
+//Remove modal
+newsModalDeleteEl.addEventListener("click", function (event) {
+  newsModalEl.classList.remove("is-active")
+});
 
 electionDisplay();
