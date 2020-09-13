@@ -19,3 +19,9 @@
        background-image: url("https://www.hancockwellness.org/wp-content/uploads/2018/11/usa-patriotic-background-loop_saiepyrxg_thumbnail-full01.jpg")
        ;
    }
+
+   #address-label {
+       color: white;
+       font-weight: bold;
+       font-size: medium;
+   }
