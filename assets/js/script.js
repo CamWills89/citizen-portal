@@ -31,7 +31,6 @@ $("#representative-btn").on("click", function () {
     } else if (localStorage.getItem("address")) {
         $("#address").val(localStorage.getItem("address"))
         window.location = "candidates.html"
-  
     } else {
         localStorage.setItem("address", userAddress)
         window.location = "candidates.html"
@@ -44,7 +43,6 @@ $("#voting-search").on("click", function () {
     var userAddress = $("#address").val() 
     console.log(userAddress)
     console.log("click!");
-    //BUG doesn't prompt for address if there's something in local storage and text input is empty, overwrites "address" value as nothing
     if (userAddress==="" & !localStorage.getItem("address")){
         $("#error-modal").addClass("is-active")
     } else if (localStorage.getItem("address")) {
