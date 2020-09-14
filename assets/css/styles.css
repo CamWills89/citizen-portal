@@ -24,11 +24,7 @@
        color: white;
        font-weight: bold;
        font-size: medium;
-   }
-
-   #voting-search {
-       height: 80px;
-       width: 150px;
+       
    }
 
    #buttons-bottom {
@@ -37,10 +33,51 @@
     width: 100%;
     
    }
+   #voting-search {
+    height: 80px;
+    width: 150px;
+    border-radius: 12px;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color:lightsteelblue;
+    border: none;
+    box-shadow: 0 9px #999;
+
+   }
+   #voting-search:hover {
+background-color: lightskyblue;
+   }
+
+#voting-search:active {
+    background-color: lightslategray;
+box-shadow: 0 5px #666;
+transform: translateY(4px);
+}
+
+  
    #representative-btn {
     height: 80px;
     width: 150px;
+    border-radius: 12px;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color:lightsteelblue;
+    border: none;
+    box-shadow: 0 9px #999;
+
 }
+#representative-btn:hover {
+    background-color: lightskyblue;
+}
+
+#representative-btn:active{
+background-color: lightslategray;
+box-shadow: 0 5px #666;
+transform: translateY(4px);
+}
+
 
 #select-scope {
     color: white;
