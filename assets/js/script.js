@@ -2,18 +2,6 @@
 //claire's api key google civic AIzaSyBuB1fEZKUXfj7JWkm-7hKc8f6JS99iCPE
 //cameron's google civic api AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE
 
-   // Try HTML5 geolocation.
-   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-        var pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-
-        };
-        console.log(pos)
-    }) 
-}
-
 //REPRESENTATIVES section
 
 $("#errorMod-delete").on("click", function () {
@@ -28,7 +16,7 @@ $("#representative-btn").on("click", function () {
     
     if (userAddress==="" & !localStorage.getItem("address")){
         $("#error-modal").addClass("is-active")
-    } else if (localStorage.getItem("address")) {
+    } else if (localStorage.getItem("address") && userAddress=="") {
         $("#address").val(localStorage.getItem("address"))
         window.location = "candidates.html"
   
@@ -47,7 +35,7 @@ $("#voting-search").on("click", function () {
     //BUG doesn't prompt for address if there's something in local storage and text input is empty, overwrites "address" value as nothing
     if (userAddress==="" & !localStorage.getItem("address")){
         $("#error-modal").addClass("is-active")
-    } else if (localStorage.getItem("address")) {
+    } else if (localStorage.getItem("address") && userAddress=="") {
         $("#address").val(localStorage.getItem("address"))
         window.location = "voting.html"
     } else {
