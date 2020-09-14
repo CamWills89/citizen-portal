@@ -33,6 +33,26 @@
     width: 100%;
     
    }
+   .scopeBtn {
+    border-radius: 12px;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color:slateblue;
+    border: none;
+    box-shadow: 0 2px #999;
+   }
+
+   .scopeBtn:hover {
+    background-color: lightskyblue;
+   }
+
+.scopeBtn:active {
+    background-color: lightslategray;
+box-shadow: 0 1px #666;
+transform: translateY(1px);
+}
+
    #voting-search {
     height: 80px;
     width: 150px;
@@ -40,7 +60,7 @@
     cursor: pointer;
     outline: none;
     color: #fff;
-    background-color:lightsteelblue;
+    background-color:slateblue;
     border: none;
     box-shadow: 0 9px #999;
 
@@ -63,7 +83,7 @@ transform: translateY(4px);
     cursor: pointer;
     outline: none;
     color: #fff;
-    background-color:lightsteelblue;
+    background-color:slateblue;
     border: none;
     box-shadow: 0 9px #999;
 
@@ -86,8 +106,28 @@ transform: translateY(4px);
 }
 
 p {
-    color: moccasin;
+color: moccasin;
 }
 li {
     color: white;
+}
+
+#modal-name-plate {
+    background-color: slateblue;
+    
+}
+
+#party, #phone, #socialOne, #socialTwo, .news {
+    color: lightseagreen;
+}
+#modal-card-background {
+    background-color:white;
+}
+
+#modal-card-foot{
+    background-color: slateblue;
+}
+
+#modal-card-title  {
+    color: gold;
 }
