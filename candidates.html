@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get To Know Your Representatives</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css"
+    integrity="sha512-ADrqa2PY1TZtb/MoLZIZu/Z/LlPaWQeDMBV73EMwjGam43/JJ5fqW38Rq8LJOVGCDfrJeOMS3Q/wRUVzW5DkjQ=="
+    crossorigin="anonymous" />
+</head>
+
+<body>
+  <h1>Choose your scope!</h1>
+  <!--buttons for scope-->
+  <button class="scopeBtn" id="country">National</button>
+  <button class="scopeBtn" id="administrativeArea1">State</button>
+  <button class="scopeBtn" id="administrativeArea2">County</button>
+
+  <div class="result"></div>
+
+  <!--representative modal-->
+  <div class="modal" id="rep-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Representative info</p>
+        <button class="delete" id="repMod-delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <!--Content...-->
+        <div id="repMod-result">
+          <p id="party"></p>
+          <p id="website"></p>
+          <p id="phone"></p>
+
+          <p id="socialOne"></p>
+          <p id="socialTwo"></p>
+
+          <div class="news">
+            <h2>Lastest news articles from NYT</h2>
+          </div>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+
+      </footer>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="assets/js/candidates.js"></script>
+</body>
+
+</html>

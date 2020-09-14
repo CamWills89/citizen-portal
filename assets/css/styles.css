@@ -1,0 +1,27 @@
+/* * {
+    box-sizing: border-box;
+} */
+
+
+
+   html, body{
+       width: 100%;
+       height: 100%;
+       background-color: lightgrey;
+   }
+
+   /* #enter-your-address { */
+    body {   
+    height: 100%;
+       width: 100%;
+       background-size: auto;
+       background-position: center center;
+       background-image: url("https://www.hancockwellness.org/wp-content/uploads/2018/11/usa-patriotic-background-loop_saiepyrxg_thumbnail-full01.jpg")
+       ;
+   }
+
+   #address-label {
+       color: white;
+       font-weight: bold;
+       font-size: medium;
+   }
