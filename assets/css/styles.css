@@ -41,3 +41,16 @@
     height: 80px;
     width: 150px;
 }
+
+#select-scope {
+    color: white;
+    font-weight: bold;
+    font-size: medium
+}
+
+p {
+    color: moccasin;
+}
+li {
+    color: white;
+}
