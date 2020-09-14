@@ -24,7 +24,7 @@ let representativesApi = function (scope) {
             return response.json();
         })
         .then(function (data) {
-            // console.log(data);
+            console.log(data);
             //loop thru office titles
             for (let i = 0; i < data.offices.length; i++) {
                 officesIndex = data.offices[i]
@@ -48,9 +48,11 @@ let representativesApi = function (scope) {
 
                         //append attributes to new li
                         newLi.attr("data-party", party)
+                        
                         newLi.attr("data-phone", phone)
+                        
                         newLi.attr("data-website", website)
-
+                        
                         //loop thru 'channels' array (if there is one) to get first 2 socials
                         if (data.officials[indicesArr[j]].channels) {
                             var socialNum = 1
@@ -86,13 +88,17 @@ $(".result").on("click", "li", function () {
     //extract data attributes and append to modal
     $(".modal-card-title").text($(this).text())
 
+    $("#party").empty()
     $("#party").text("Party: " + $(this).attr("data-party"))
 
     //empty website p
     $("#website").empty()
+    
     var url = $(this).attr("data-website")
+    if(url) {
     $("#website").append($("<a>").attr("href", url).text("Website: " + url))
-
+    }
+    
     $("#phone").text($(this).attr("data-phone"))
 
     //empty socials p's 
@@ -112,7 +118,7 @@ console.log("LOOK "+name);
 
 
     //get news articles with person's name
-    var apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${name}&election&news_desk=politics&api-key=0LjGSIV1PXpRyRsQkYxlhQe10ryACGHV`
+    var apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${name}&election&sort=relevance&news_desk=politics&type_of_material=news&api-key=0LjGSIV1PXpRyRsQkYxlhQe10ryACGHV`
 
     fetch(apiUrl)
         .then(function (response) {
@@ -121,20 +127,28 @@ console.log("LOOK "+name);
         .then(function (data) {
             console.log(data);
 
-            $(".news").empty()
+            $(".articles").empty()
 
-            for (i = 0; i < 5; i++) {
+            for (i = 0; i < data.response.docs.length; i++) {
                 var newP = $("<p>")
+                var nameSplit=name.split("-")
+                var firstName=nameSplit[0]
+                var lastName = nameSplit[nameSplit.length-1]
+                if(data.response.docs[i].headline.main.includes(firstName)&& data.response.docs[i].headline.main.includes(lastName)) {
                 newP.text(data.response.docs[i].headline.main)
                 var articleUrl = data.response.docs[i].web_url
                 newP.append($("<a>").attr("href", articleUrl).attr("target", "_blank").text(articleUrl))
 
 
-                $(".news").append(newP)
+                $(".article").append(newP)
+                }
             }
         })
 
-
+//if there are no p's in .articles div, say "there's nothing"
+//     $(this).append($("<p>").text("no articles at this time"))
+//     console.log("HERE");
+// }
 
 
     //trigger modal

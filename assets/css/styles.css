@@ -62,7 +62,7 @@ transform: translateY(4px);
     border-radius: 12px;
     cursor: pointer;
     outline: none;
-    color: #fff;
+    color: rgb(0, 0, 0);
     background-color:lightsteelblue;
     border: none;
     box-shadow: 0 9px #999;
@@ -86,8 +86,12 @@ transform: translateY(4px);
 }
 
 p {
-    color: moccasin;
+    color: black
 }
 li {
     color: white;
+}
+
+#news{
+    color: black
 }
