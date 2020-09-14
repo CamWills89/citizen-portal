@@ -33,6 +33,26 @@
     width: 100%;
     
    }
+   .scopeBtn {
+    border-radius: 12px;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color:slateblue;
+    border: none;
+    box-shadow: 0 2px #999;
+   }
+
+   .scopeBtn:hover {
+    background-color: lightskyblue;
+   }
+
+.scopeBtn:active {
+    background-color: lightslategray;
+box-shadow: 0 1px #666;
+transform: translateY(1px);
+}
+
    #voting-search {
     height: 80px;
     width: 150px;
