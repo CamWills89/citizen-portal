@@ -16,7 +16,7 @@
        width: 100%;
        background-size: auto;
        background-position: center center;
-       background-image: url("https://www.hancockwellness.org/wp-content/uploads/2018/11/usa-patriotic-background-loop_saiepyrxg_thumbnail-full01.jpg")
+       background-image: url("https://www.ppt-backgrounds.net/images/patriotic-star--hd-atsmap--keynote-ppt-templates.jpg")
        ;
    }
 
@@ -25,3 +25,19 @@
        font-weight: bold;
        font-size: medium;
    }
+
+   #voting-search {
+       height: 80px;
+       width: 150px;
+   }
+
+   #buttons-bottom {
+    position: absolute;
+    bottom: 2%;
+    width: 100%;
+    
+   }
+   #representative-btn {
+    height: 80px;
+    width: 150px;
+}
