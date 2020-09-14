@@ -92,7 +92,7 @@ let displayNewsHandler = function (event) {
       for (let i = 0; i < 5; i++) {
         let newsArticles = document.createElement("p");
         newsArticles.innerHTML = data.response.docs[i].headline.main;
-        
+
         let articleUrl = document.createElement("a");
         let articleUrlLink = data.response.docs[i].web_url
         articleUrl.innerHTML = articleUrlLink;
