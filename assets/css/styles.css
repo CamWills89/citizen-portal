@@ -107,6 +107,7 @@ transform: translateY(4px);
 
 p {
 color: moccasin;
+/*P tag is used becuase I cannot seem to modify results being returned from apis without being as vauge as possible with scope of selectors affecting modals as well regardless of conflicting selectors*/
 }
 li {
     color: white;
@@ -130,4 +131,40 @@ li {
 
 #modal-card-title  {
     color: gold;
+}
+
+#voting-title {
+    color: white;
+    font-weight: bold;
+    font-size: medium
+}
+/* This text color will not change */
+#election-name {
+    color: red ;
+}
+h2 {
+    color:silver;
+}
+h3 {
+    color: silver;
+}
+
+#registerBtn {
+    border-radius: 12px;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: gold;
+    border: none;
+    box-shadow: 0 2px #999;
+   }
+
+   #registerBtn:hover {
+    background-color: lightskyblue;
+   }
+
+#register:active {
+    background-color: lightslategray;
+box-shadow: 0 1px #666;
+transform: translateY(1px);
 }
