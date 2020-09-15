@@ -172,3 +172,7 @@ transform: translateY(3px);
 .voter-info {
     /*How do I move this section to the bottom of the page without stacking on top of itself  */
 }
+
+.short-break {
+    line-height: 5px;
+}
