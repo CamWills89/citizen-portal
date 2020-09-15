@@ -198,6 +198,9 @@ color: red;
 .new-li {
     list-style: none;
     padding: 5px;
+    width: 25%;
+    text-align: center;
+    margin: auto;
 }
 
 .new-li:hover {
