@@ -207,6 +207,7 @@ color: red;
 
 .new-li:hover {
     cursor: pointer;
+    border-color: lightgray;
 }
 .candidate-scope {
     width: 50%;
