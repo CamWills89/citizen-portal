@@ -212,6 +212,10 @@ color: red;
     font-weight: bold;
 }
 
+.new-li:active {
+    border-style: inset;
+    border-color: lightgray;
+}
 .candidate-scope {
     width: 50%;
     margin: auto;
