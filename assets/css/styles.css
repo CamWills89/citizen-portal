@@ -198,6 +198,16 @@ color: red;
 .new-li {
     list-style: none;
     padding: 5px;
+    width: 25%;
+    text-align: center;
+    margin: auto;
+    border-style: outset;
+    border-color: lightgoldenrodyellow;
+}
+
+.new-li:hover {
+    cursor: pointer;
+    border-color: lightgray;
 }
 
 .candidate-scope {
