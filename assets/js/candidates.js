@@ -48,11 +48,11 @@ let representativesApi = function (scope) {
 
                         //append attributes to new li
                         newLi.attr("data-party", party)
-                        
+
                         newLi.attr("data-phone", phone)
-                        
+
                         newLi.attr("data-website", website)
-                        
+
                         //loop thru 'channels' array (if there is one) to get first 2 socials
                         if (data.officials[indicesArr[j]].channels) {
                             var socialNum = 1
@@ -93,12 +93,12 @@ $(".result").on("click", "li", function () {
 
     //empty website p
     $("#website").empty()
-    
+
     var url = $(this).attr("data-website")
-    if(url) {
-    $("#website").append($("<a>").attr("href", url).text("Website: " + url))
+    if (url) {
+        $("#website").append($("<a>").attr("href", url).text("Website: " + url))
     }
-    
+
     $("#phone").text($(this).attr("data-phone"))
 
     //empty socials p's 
@@ -113,8 +113,8 @@ $(".result").on("click", "li", function () {
         $("#socialTwo").text($(this).attr("data-socialType-2") + ": " + $(this).attr("data-socialID-2"))
     }
 
-var name = $(this).text().split(" ").join("-")
-console.log("LOOK "+name);
+    var name = $(this).text().split(" ").join("-")
+    console.log("LOOK " + name);
 
 
     //get news articles with person's name
@@ -131,28 +131,31 @@ console.log("LOOK "+name);
 
             for (i = 0; i < data.response.docs.length; i++) {
                 var newP = $("<p>")
-                var nameSplit=name.split("-")
-                var firstName=nameSplit[0]
-                var lastName = nameSplit[nameSplit.length-1]
-                if(data.response.docs[i].headline.main.includes(firstName)&& data.response.docs[i].headline.main.includes(lastName)) {
-                newP.text(data.response.docs[i].headline.main)
-                var articleUrl = data.response.docs[i].web_url
-                newP.append($("<a>").attr("href", articleUrl).attr("target", "_blank").text(articleUrl))
+                var nameSplit = name.split("-")
+                var firstName = nameSplit[0]
+                var lastName = nameSplit[nameSplit.length - 1]
+
+                if (data.response.docs[i].headline.main.includes(firstName) && data.response.docs[i].headline.main.includes(lastName)) {
+                    newP.text(data.response.docs[i].headline.main)
+                    var articleUrl = data.response.docs[i].web_url
+                    newP.append($("<a>").attr("href", articleUrl).attr("target", "_blank").text(articleUrl))
 
 
-                $(".article").append(newP)
+                    $(".articles").append(newP)
+
                 }
             }
+
+
+            //if there are no p's in .articles div, say "there's nothing"
+            //     $(this).append($("<p>").text("no articles at this time"))
+            //     console.log("HERE");
+            // }
+
+
+            //trigger modal
+            $("#rep-modal").addClass("is-active")
         })
-
-//if there are no p's in .articles div, say "there's nothing"
-//     $(this).append($("<p>").text("no articles at this time"))
-//     console.log("HERE");
-// }
-
-
-    //trigger modal
-    $("#rep-modal").addClass("is-active")
 })
 
 //make x button on modal exit out of modal
