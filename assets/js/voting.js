@@ -107,11 +107,13 @@ let displayNewsHandler = function (event) {
       //getting the 1st 5 articles and displaying them
       for (let i = 0; i < 5; i++) {
         let newsArticles = document.createElement("p");
+        newsArticles.classList.add("article-title");
         newsArticles.innerHTML = data.response.docs[i].headline.main;
 
         let articleUrl = document.createElement("a");
         let articleUrlLink = data.response.docs[i].web_url
         articleUrl.innerHTML = articleUrlLink;
+        articleUrl.classList.add("article-link");
         articleUrl.setAttribute("href", articleUrlLink);
         articleUrl.setAttribute("target", "_blank");
 
