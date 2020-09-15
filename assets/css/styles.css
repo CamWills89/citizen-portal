@@ -201,6 +201,8 @@ color: red;
     width: 25%;
     text-align: center;
     margin: auto;
+    border-style: outset;
+    border-color: lightgoldenrodyellow;
 }
 
 .new-li:hover {
