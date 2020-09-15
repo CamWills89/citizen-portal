@@ -145,7 +145,7 @@ h3 {
 }
 
 #registerBtn {
-    margin-left: 1%;
+    margin: 1%;
     border-radius: 12px;
     cursor: pointer;
     outline: none;
@@ -227,5 +227,11 @@ color: red;
 }
 
 .election-footer {
+    text-align: center;
+}
+
+.voter-footer {
+    width: 90%;
+    margin: auto;
     text-align: center;
 }
