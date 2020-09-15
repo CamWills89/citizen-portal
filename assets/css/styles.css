@@ -209,12 +209,18 @@ color: red;
     cursor: pointer;
     border-color: lightgray;
 }
-.new-li:active {
-    border-style: inset;
-    border-color: lightgray;
-}
 .candidate-scope {
     width: 50%;
     margin: auto;
+    text-align: center;
+}
+
+.election-header, .voter-info {
+    padding: 20px 0;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.election-footer {
     text-align: center;
 }

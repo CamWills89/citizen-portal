@@ -52,13 +52,26 @@
       </section>
     
 
-    <div class="election-display">
-        <h2 id="election-name" class="election-name">
-            <!-- The below code adds caret symbol. Do not know how to get it inline with generated results??? -->
-            <!-- <i class="fas fa-caret-right"></i>  -->
-        </h2>
-        <p class="election-day"></p>
+    <div class="rep-container">
+        <div class="election-display">
+            <h2 id="election-name" class="election-name">
+                <!-- The below code adds caret symbol. Do not know how to get it inline with generated results??? -->
+                <!-- <i class="fas fa-caret-right"></i>  -->
+            </h2>
+            <p class="election-day"></p>
+        </div>
+        
+        <div class="voter-info">
+            <br>
+            <h3 class="website-name"></h3>
+            <a class="website-link"></a>
+        </div>
     </div>
+            <footer class="voter-footer">
+                <h3>Register to Vote Below</h3>
+                <button id="registerBtn"  onclick="window.location.href='https://register.rockthevote.com/?partner=38861'">Register to Vote
+                </button>
+            </footer>
 
     <div class="modal" id="news-modal">
         <div class="modal-background"></div>
@@ -77,17 +90,6 @@
             <footer class="modal-card-foot"></footer>
         </div>
     </div>
-    <div class="voter-info">
-        <br>
-        <h3 class="website-name"></h3>
-        <a class="website-link"></a>
-    </div>
-
-    <footer class="voter-info">
-        <h3>Register to Vote Below</h3>
-        <button id="registerBtn"  onclick="window.location.href='https://register.rockthevote.com/?partner=38861'">Register to Vote
-            </button>
-    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
