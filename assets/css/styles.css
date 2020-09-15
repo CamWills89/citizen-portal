@@ -12,7 +12,6 @@
        
    }
    
-
    #address-label {
        color: white;
        font-weight: bold;
@@ -201,13 +200,16 @@ color: red;
     width: 25%;
     text-align: center;
     margin: auto;
-    border-style: outset;
+    /* border-style: outset;
     border-color: lightgoldenrodyellow;
+    border-radius: 20px; */
 }
 
 .new-li:hover {
     cursor: pointer;
     border-color: lightgray;
+    color: lightgreen;
+    font-weight: bold;
 }
 
 .new-li:active {
