@@ -168,3 +168,7 @@ $("#repMod-delete").on("click", function () {
     $("#rep-modal").removeClass("is-active")
 })
 
+// if (event.target !== modalEl) {
+//     modalEl.classList.remove("is-active")
+//   }
+// }
