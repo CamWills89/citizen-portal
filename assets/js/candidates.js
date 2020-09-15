@@ -30,18 +30,18 @@ let representativesApi = function (scope) {
                 officesIndex = data.offices[i]
                 var officialsIndex = officesIndex.officialIndices
                 //append each office title to page
-                var repContainer = $("<div>")
+                var repContainer = $("<div>").addClass("rep-container")
                 $(".result").append(repContainer)
                 var officeTitle = $(repContainer).append($("<p>").text(officesIndex.name))
                 
                 if (data.offices[i].officialIndices) {
-                   
+    
                     var indicesArr = data.offices[i].officialIndices
                     //loop thru all representatives holding the office title
                     for (let j = 0; j < indicesArr.length; j++) {
 
                         //create new li element for each representative. found by plugging in correspoding index to officials array
-                        var newLi = $("<li>").text(data.officials[indicesArr[j]].name)
+                        var newLi = $("<li>").text(data.officials[indicesArr[j]].name).addClass("new-li")
 
                         //set variables to add info to each li to extract later when clicked
                         var party = data.officials[indicesArr[j]].party
@@ -74,8 +74,8 @@ let representativesApi = function (scope) {
                         
 
                         //append new li to corresponding office title
+                        
                         repContainer.append(newLi)
-
                         
                     }
 
@@ -168,7 +168,11 @@ $("#repMod-delete").on("click", function () {
     $("#rep-modal").removeClass("is-active")
 })
 
-// if (event.target !== modalEl) {
-//     modalEl.classList.remove("is-active")
-//   }
-// }
+
+//blur
+// $(".modal").on("click", function(event){
+//     if(event.target!==$(this)) {
+//         $(".modal").removeClass("is-active")
+//     }
+// })
+
