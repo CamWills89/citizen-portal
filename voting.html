@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css"
         integrity="sha512-ADrqa2PY1TZtb/MoLZIZu/Z/LlPaWQeDMBV73EMwjGam43/JJ5fqW38Rq8LJOVGCDfrJeOMS3Q/wRUVzW5DkjQ=="
         crossorigin="anonymous" />
+        <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
         <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 
@@ -15,7 +16,10 @@
     <h1 id="voting-title">Upcoming Elections in the US</h1>
 
     <div class="election-display">
-        <h2 id="election-name" class="election-name"></h2>
+        <h2 id="election-name" class="election-name">
+            <!-- The below code adds caret symbol. Do not know how to get it inline with generated results??? -->
+            <!-- <i class="fas fa-caret-right"></i>  -->
+        </h2>
         <p class="election-day"></p>
     </div>
 
@@ -37,14 +41,15 @@
         </div>
     </div>
     <div class="voter-info">
+        <br>
         <h3 class="website-name"></h3>
         <a class="website-link"></a>
     </div>
 
-    <div>
+    <div class="voter-info">
         <h3>Register to Vote Below</h3>
-        <button id="registerBtn"><a href="https://register.rockthevote.com/?partner=38861" target="_blank">Register to Vote
-            </a></button>
+        <button id="registerBtn" onclick="window.location.href='https://register.rockthevote.com/?partner=38861';">Register to Vote
+            </button>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
