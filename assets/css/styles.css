@@ -38,9 +38,10 @@
     cursor: pointer;
     outline: none;
     color: #fff;
-    background-color:slateblue;
+    background-color: green;
     border: none;
-    box-shadow: 0 2px #999;
+    box-shadow: 0px 5px 0 1px #999;
+    margin: 1%;
    }
 
    .scopeBtn:hover {
@@ -102,11 +103,12 @@ transform: translateY(4px);
 #select-scope {
     color: white;
     font-weight: bold;
-    font-size: medium
+    font-size: larger;
 }
 
 p {
 color: moccasin;
+font-size: large;
 /*P tag is used becuase I cannot seem to modify results being returned from apis without being as vauge as possible with scope of selectors affecting modals as well regardless of conflicting selectors*/
 }
 li {
@@ -114,7 +116,7 @@ li {
 }
 
 #modal-name-plate {
-    background-color: slateblue;
+    background-color: #5573d8;
     
 }
 
@@ -126,7 +128,7 @@ li {
 }
 
 #modal-card-foot{
-    background-color: slateblue;
+    background-color: #5573d8;
 }
 
 #modal-card-title  {
@@ -183,5 +185,11 @@ color: green;
 
 .article-link {
 color: red;
+}
+
+.candidate-scope {
+margin: auto;
+width: 50%;
+text-align: center;
 }
 
