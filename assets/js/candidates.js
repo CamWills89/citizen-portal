@@ -138,8 +138,8 @@ $(".result").on("click", "li", function () {
                 if (data.response.docs[i].headline.main.includes(firstName) && data.response.docs[i].headline.main.includes(lastName)) {
                     newP.text(data.response.docs[i].headline.main)
                     var articleUrl = data.response.docs[i].web_url
-                    newP.append($("<a>").attr("href", articleUrl).attr("target", "_blank").text(articleUrl))
-
+                    newP.append($("<a>").attr("href", articleUrl).attr("target", "_blank").text(articleUrl).addClass("article-link"))
+                    newP.addClass("article-title")
 
                     $(".articles").append(newP)
 

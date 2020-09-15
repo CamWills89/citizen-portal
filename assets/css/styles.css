@@ -176,3 +176,12 @@ transform: translateY(3px);
 .short-break {
     line-height: 5px;
 }
+
+.article-title {
+color: green;
+}
+
+.article-link {
+color: red;
+}
+
