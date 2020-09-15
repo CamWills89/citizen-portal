@@ -3,13 +3,14 @@ let electionDayContainerEl = document.querySelector(".election-display");
 let voterInfoEl = document.querySelector(".voter-info");
 let websiteNameEl = document.querySelector(".website-name");
 let websiteAddressElEl = document.querySelector(".website-link");
+let modalEl = document.querySelector(".modal");
 let newsModalEl = document.querySelector("#news-modal");
 let newsModalContentEl = document.querySelector(".news");
 let newsModalDeleteEl = document.querySelector("#news-modal-delete");
 let modalHeading = document.querySelector(".modal-card-title");
-// console.log(modalHeading);
+// console.log(ModalEl);
 
-
+//get the entered address and use
 let userAddress = localStorage.getItem("address");
 
 let electionDisplay = function () {
@@ -21,7 +22,8 @@ let electionDisplay = function () {
       if (response.ok) {
         return response.json();
       } else {
-        document.location.replace("./index.html");
+        newsModalEl.classList.add("is-active")
+        newsModalContentEl.textContent = ("There was an error connecting with the server")
       }
     })
     .then(function (data) {
@@ -40,16 +42,18 @@ let electionDisplay = function () {
       }
 
       let voterApiUrl =
-        "https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=" + userAddress + "&returnAllAvailableData=true&requestBody=true&electionId=7000&key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE";
+        `https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=${userAddress}&returnAllAvailableData=true&requestBody=true&electionId=7000&key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE`;
       fetch(voterApiUrl)
         .then(function (response) {
           if (response.ok) {
             return response.json();
           } else {
-            document.location.replace("./index.html");
+            newsModalEl.classList.add("is-active")
+            newsModalContentEl.textContent = ("There was an error connecting with the server")
           }
         })
         .then(function (data) {
+          //get the name of the state and the state's website to display
           let siteName = data.state[0].electionAdministrationBody.name;
           let siteAddress =
             data.state[0].electionAdministrationBody.electionInfoUrl;
@@ -64,28 +68,40 @@ let electionDisplay = function () {
 
           voterInfoEl.appendChild(websiteNameEl);
           voterInfoEl.appendChild(websiteAddressElEl);
-        });
+        })
+        .catch(function (error) {
+          newsModalEl.classList.add("is-active")
+          newsModalContentEl.textContent = ("There was an error connecting with the server")
+        })
     });
 };
 
 let displayNewsHandler = function (event) {
+  //display modal when an election is selected
   let targetedModal = event.target;
-  if (event.target.matches("h2")) {
+  if (targetedModal.matches("h2")) {
     newsModalEl.classList.add("is-active")
+  } else {
+    return;
   }
 
   let electionName = targetedModal.textContent
   modalHeading.textContent = electionName;
 
   //get news articles with person's name
-  let apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${electionName}&election&news_desk=politics&api-key=0LjGSIV1PXpRyRsQkYxlhQe10ryACGHV`
+  let apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${electionName}&election&sort=relevance&news_desk=politics&type_of_material=news&api-key=0LjGSIV1PXpRyRsQkYxlhQe10ryACGHV`
 
   fetch(apiUrl)
     .then(function (response) {
-      return response.json();
+      if (response.ok) {
+        return response.json();
+      } else {
+        newsModalEl.classList.add("is-active")
+        newsModalContentEl.textContent = ("There was an error connecting with the server")
+      }
     })
     .then(function (data) {
-
+      //first clear the old content
       newsModalContentEl.textContent = "";
 
       //getting the 1st 5 articles and displaying them
@@ -102,14 +118,24 @@ let displayNewsHandler = function (event) {
         newsModalContentEl.appendChild(newsArticles);
         newsModalContentEl.appendChild(articleUrl);
       }
-    });
+    })
+    .catch(function (error) {
+      newsModalEl.classList.add("is-active")
+      newsModalContentEl.textContent = ("There was an error connecting with the server")
+    })
 }
 
 //event listneners
 document.addEventListener("click", displayNewsHandler);
-//Remove modal
+//Remove modal on "x" 
 newsModalDeleteEl.addEventListener("click", function (event) {
   newsModalEl.classList.remove("is-active")
 });
+//Remove modal on click outside of modal
+modalEl.addEventListener("click", function (event) {
+  if (event.target !== modalEl) {
+    modalEl.classList.remove("is-active")
+  }
+})
 
 electionDisplay();
