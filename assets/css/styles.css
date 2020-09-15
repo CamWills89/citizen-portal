@@ -118,7 +118,7 @@ li {
     
 }
 
-#party, #phone, #socialOne, #socialTwo, .news {
+#party, #phone, #socialOne, #socialTwo {
     color: lightseagreen;
 }
 #modal-card-background {
@@ -150,21 +150,25 @@ h3 {
 }
 
 #registerBtn {
+    margin-left: 1%;
     border-radius: 12px;
     cursor: pointer;
     outline: none;
     color: #fff;
-    background-color: gold;
+    background-color: green;
     border: none;
-    box-shadow: 0 2px #999;
+    box-shadow: 0 5px #999;
    }
 
    #registerBtn:hover {
-    background-color: lightskyblue;
+    background-color: lightseagreen;
    }
 
-#register:active {
+#registerBtn:active {
     background-color: lightslategray;
-box-shadow: 0 1px #666;
-transform: translateY(1px);
+box-shadow: 0 4px #666;
+transform: translateY(3px);
+}
+.voter-info {
+    /*How do I move this section to the bottom of the page without stacking on top of itself  */
 }
