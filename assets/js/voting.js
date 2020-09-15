@@ -31,6 +31,7 @@ let electionDisplay = function () {
       //this is to display all upcoming elections
       for (let i = 1; i < data.elections.length; i++) {
         let electionName = document.createElement("h2");
+        electionName.classList.add("election-header");
         electionName.textContent = data.elections[i].name;
         electionDayContainerEl.appendChild(electionName);
         let electionDate = moment(data.elections[i].electionDay).format(

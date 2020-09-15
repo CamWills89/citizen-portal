@@ -199,8 +199,19 @@ color: red;
     list-style: none;
     padding: 5px;
 }
+
 .candidate-scope {
     width: 50%;
     margin: auto;
+    text-align: center;
+}
+
+.election-header, .voter-info {
+    padding: 20px 0;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.election-footer {
     text-align: center;
 }
