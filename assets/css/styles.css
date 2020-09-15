@@ -190,6 +190,8 @@ color: red;
 .result {
     -webkit-column-count: 5;
     column-count: 5;
+    margin:2%;
+    ;
 }
 
 .candidate-scope {
