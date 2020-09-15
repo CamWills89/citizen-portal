@@ -191,3 +191,9 @@ color: red;
     -webkit-column-count: 5;
     column-count: 5;
 }
+
+.candidate-scope {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
