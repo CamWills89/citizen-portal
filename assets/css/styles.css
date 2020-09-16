@@ -2,24 +2,51 @@
     box-sizing: border-box;
 }
 
-body,
-html {
-    background-size: auto;
-    background-position: center;
+body, 
+html
+{
     background-image: url("https://www.ppt-backgrounds.net/images/patriotic-star--hd-atsmap--keynote-ppt-templates.jpg");
+    background-position: center;
+}
+
+/*general element styles*/
+
+p {
+    font-size: large;
+}
+
+li,
+.election-day, #btn-text {
+    color: #fff;
+}
+
+h2,
+.website-link,
+p {
+    color: moccasin;
+}
+
+h3 {
+    color: silver;
+}
+
+/* home page */
+
+#address {
+    border: 3px solid #5573d8;
+}
+
+#address-form {
+    margin: 20px;
 }
 
 #address-label {
     color: #fff;
     font-weight: bold;
     font-size: x-large;
-
 }
 
-#buttons-bottom {
-    bottom: 2%;
-    width: 100%;
-}
+/* buttons */
 
 .scopeBtn:hover,
 #voting-search:hover,
@@ -33,28 +60,7 @@ html {
     transform: translateY(1px);
 }
 
-#voting-search {
-    height: 80px;
-    width: 150px;
-    border-radius: 12px;
-    cursor: pointer;
-    outline: none;
-    color: #fff;
-    background-color: #5573d8;
-    border: none;
-    box-shadow: 0px 9px #999;
-    margin-bottom: 5%;
-    margin-right: 10%;
-
-}
-
-#voting-search:active,
-#representative-btn:active {
-    background-color: lightslategray;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-}
-
+#voting-search,
 #representative-btn {
     height: 80px;
     width: 150px;
@@ -64,9 +70,15 @@ html {
     color: #fff;
     background-color: #5573d8;
     border: none;
-    box-shadow: 0 9px #999;
-    margin-bottom: 5%;
-    margin-left: 10%;
+    box-shadow: 0px 9px #999;
+    margin: 15px
+}
+
+#voting-search:active,
+#representative-btn:active {
+    background-color: lightslategray;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
 }
 
 .scopeBtn,
@@ -82,21 +94,7 @@ html {
     box-shadow: 0 5px #999;
 }
 
-#select-scope {
-    color: #fff;
-    font-weight: bold;
-    font-size: larger;
-}
-
-p {
-    color: moccasin;
-    font-size: large;
-}
-
-li,
-.election-day, #btn-text {
-    color: #fff;
-}
+/*modal styles*/
 
 .modal-card-head,
 .modal-card-foot {
@@ -111,10 +109,6 @@ li,
     color: lightseagreen;
 }
 
-.modal-card-background {
-    background-color: #fff;
-}
-
 .modal-card-title {
     color: gold;
 }
@@ -125,11 +119,6 @@ li,
     font-size: xx-large;
 }
 
-h2,
-.website-link {
-    color: moccasin;
-}
-
 .news-header {
     color: slategray;
     font-size: x-large;
@@ -138,36 +127,40 @@ h2,
     text-align: center;
 }
 
-h3 {
-    color: silver;
-}
-
-#registerBtn:active {
-    background-color: lightslategray;
-    box-shadow: 0 4px #666;
-    transform: translateY(3px);
-}
-
 .short-break {
     line-height: 5px;
 }
 
 .article-title {
-    color: green;
     text-align: center;
     padding: 5px;
 }
 
 .article-link {
     color: lightseagreen;
-    padding: 5px;
+}
+
+#error-text {
+    color: black;
+}
+
+/*representatives page*/
+
+.candidate-scope {
+    margin: auto;
+    text-align: center;
+}
+
+#select-scope {
+    color: #fff;
+    font-weight: bold;
+    font-size: larger;
 }
 
 .result {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
 }
 
 .rep-container {
@@ -192,10 +185,11 @@ h3 {
     font-weight: bold;
 }
 
-.candidate-scope {
-    margin: auto;
-    text-align: center;
+.rep-info {
+    padding-bottom: 15px;
 }
+
+/*election page*/
 
 .election-header,
 .voter-info {
@@ -218,20 +212,4 @@ h3 {
     width: 90%;
     margin: auto;
     text-align: center;
-}
-
-#address {
-    border: 3px solid #5573d8;
-}
-
-#address-form {
-    margin: 20px;
-}
-
-.rep-info {
-    padding-bottom: 15px;
-}
-
-#error-text {
-    color: black;
 }
