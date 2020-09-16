@@ -8,7 +8,6 @@ let newsModalEl = document.querySelector("#news-modal");
 let newsModalContentEl = document.querySelector(".news");
 let newsModalDeleteEl = document.querySelector("#news-modal-delete");
 let modalHeading = document.querySelector(".modal-card-title");
-// console.log(ModalEl);
 
 //get the entered address and use
 let userAddress = localStorage.getItem("address");
@@ -22,8 +21,8 @@ let electionDisplay = function () {
       if (response.ok) {
         return response.json();
       } else {
-        newsModalEl.classList.add("is-active")
-        newsModalContentEl.textContent = ("There was an error connecting with the server")
+        newsModalEl.classList.add("is-active");
+        newsModalContentEl.textContent = ("There was an error connecting with the server");
       }
     })
     .then(function (data) {
@@ -51,8 +50,8 @@ let electionDisplay = function () {
           if (response.ok) {
             return response.json();
           } else {
-            newsModalEl.classList.add("is-active")
-            newsModalContentEl.textContent = ("There was an error connecting with the server")
+            newsModalEl.classList.add("is-active");
+            newsModalContentEl.textContent = ("There was an error connecting with the server");
           }
         })
         .then(function (data) {
@@ -73,9 +72,9 @@ let electionDisplay = function () {
           voterInfoEl.appendChild(websiteAddressElEl);
         })
         .catch(function (error) {
-          newsModalEl.classList.add("is-active")
-          newsModalContentEl.textContent = ("There was an error connecting with the server")
-        })
+          newsModalEl.classList.add("is-active");
+          newsModalContentEl.textContent = ("There was an error connecting with the server");
+        });
     });
 };
 
@@ -83,12 +82,12 @@ let displayNewsHandler = function (event) {
   //display modal when an election is selected
   let targetedModal = event.target;
   if (targetedModal.matches("h2")) {
-    newsModalEl.classList.add("is-active")
+    newsModalEl.classList.add("is-active");
   } else {
     return;
   }
 
-  let electionName = targetedModal.textContent
+  let electionName = targetedModal.textContent;
   modalHeading.textContent = electionName;
 
   //get news articles with person's name
@@ -99,8 +98,8 @@ let displayNewsHandler = function (event) {
       if (response.ok) {
         return response.json();
       } else {
-        newsModalEl.classList.add("is-active")
-        newsModalContentEl.textContent = ("There was an error connecting with the server")
+        newsModalEl.classList.add("is-active");
+        newsModalContentEl.textContent = ("There was an error connecting with the server");
       }
     })
     .then(function (data) {
@@ -113,7 +112,7 @@ let displayNewsHandler = function (event) {
         newsArticles.classList.add("article-title");
 
         let articleUrl = document.createElement("a");
-        let articleUrlLink = data.response.docs[i].web_url
+        let articleUrlLink = data.response.docs[i].web_url;
         articleUrl.innerHTML = data.response.docs[i].headline.main;
         articleUrl.classList.add("article-link");
         articleUrl.setAttribute("href", articleUrlLink);
@@ -124,8 +123,8 @@ let displayNewsHandler = function (event) {
       }
     })
     .catch(function (error) {
-      newsModalEl.classList.add("is-active")
-      newsModalContentEl.textContent = ("There was an error connecting with the server")
+      newsModalEl.classList.add("is-active");
+      newsModalContentEl.textContent = ("There was an error connecting with the server");
     })
 }
 
@@ -133,23 +132,24 @@ let displayNewsHandler = function (event) {
 document.addEventListener("click", displayNewsHandler);
 //Remove modal on "x" 
 newsModalDeleteEl.addEventListener("click", function (event) {
-  newsModalEl.classList.remove("is-active")
+  newsModalEl.classList.remove("is-active");
 });
 //Remove modal on click outside of modal
 modalEl.addEventListener("click", function (event) {
   if (event.target !== modalEl) {
-    modalEl.classList.remove("is-active")
+    modalEl.classList.remove("is-active");
   }
 })
 
-$(document).ready(function() {
+//toggling the hamburger menu
+$(document).ready(function () {
 
   // Check for click events on the navbar burger icon
-  $(".navbar-burger").click(function() {
+  $(".navbar-burger").click(function () {
 
-      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-      $(".navbar-burger").toggleClass("is-active");
-      $(".navbar-menu").toggleClass("is-active");
+    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+    $(".navbar-burger").toggleClass("is-active");
+    $(".navbar-menu").toggleClass("is-active");
 
   });
 });

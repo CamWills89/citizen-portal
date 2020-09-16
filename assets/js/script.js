@@ -4,55 +4,50 @@
 
 //REPRESENTATIVES section
 
-$(document).ready(function() {
-
-    // Check for click events on the navbar burger icon
-    $(".navbar-burger").click(function() {
-  
-        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-        $(".navbar-burger").toggleClass("is-active");
-        $(".navbar-menu").toggleClass("is-active");
-  
-    });
-  });
-
 $("#errorMod-delete").on("click", function () {
-    $("#error-modal").removeClass("is-active")
-})
+    $("#error-modal").removeClass("is-active");
+});
 
 //Local storage for representatives button
 $("#representative-btn").on("click", function () {
-    var userAddress = $("#address").val() 
-    console.log(userAddress)
-    console.log("click!");
-    
-    if (userAddress==="" & !localStorage.getItem("address")){
-        $("#error-modal").addClass("is-active")
-    } else if (localStorage.getItem("address") && userAddress=="") {
-        $("#address").val(localStorage.getItem("address"))
-        window.location = "candidates.html"
+    var userAddress = $("#address").val();
+
+    if (userAddress === "" & !localStorage.getItem("address")) {
+        $("#error-modal").addClass("is-active");
+    } else if (localStorage.getItem("address") && userAddress == "") {
+        $("#address").val(localStorage.getItem("address"));
+        window.location = "candidates.html";
     } else {
-        localStorage.setItem("address", userAddress)
-        window.location = "candidates.html"
+        localStorage.setItem("address", userAddress);
+        window.location = "candidates.html";
     }
 
 });
 
 //Local storage for voter info button
 $("#voting-search").on("click", function () {
-    var userAddress = $("#address").val() 
-    console.log(userAddress)
-    console.log("click!");
-    if (userAddress==="" & !localStorage.getItem("address")){
-        $("#error-modal").addClass("is-active")
-    } else if (localStorage.getItem("address") && userAddress=="") {
-        $("#address").val(localStorage.getItem("address"))
-        window.location = "voting.html"
+    var userAddress = $("#address").val();
+
+    if (userAddress === "" & !localStorage.getItem("address")) {
+        $("#error-modal").addClass("is-active");
+    } else if (localStorage.getItem("address") && userAddress == "") {
+        $("#address").val(localStorage.getItem("address"));
+        window.location = "voting.html";
     } else {
-        localStorage.setItem("address", userAddress)
-        window.location = "voting.html"
+        localStorage.setItem("address", userAddress);
+        window.location = "voting.html";
     }
 });
 
- 
+//toggling the hamburger menu
+$(document).ready(function () {
 
+    // Check for click events on the navbar burger icon
+    $(".navbar-burger").click(function () {
+
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        $(".navbar-burger").toggleClass("is-active");
+        $(".navbar-menu").toggleClass("is-active");
+
+    });
+});
