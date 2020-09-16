@@ -177,7 +177,7 @@ h3 {
     width: 100%
 }
 
-.rep-li {
+.rep-li, .vacant-li {
     list-style: none;
     padding: 5px;
     text-align: center;

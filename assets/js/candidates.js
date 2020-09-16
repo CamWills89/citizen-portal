@@ -24,6 +24,8 @@ let representativesApi = function (scope) {
             return response.json();
         })
         .then(function (data) {
+            console.log(data);
+            
             //loop thru office titles
             for (let i = 0; i < data.offices.length; i++) {
                 officesIndex = data.offices[i];
@@ -37,14 +39,18 @@ let representativesApi = function (scope) {
                 var indicesArr = data.offices[i].officialIndices;
                 //loop thru all representatives holding the office title
                 for (let j = 0; j < indicesArr.length; j++) {
-
+                    var rep = data.officials[indicesArr[j]]
+                    if (rep.name=="VACANT") {
+                        var vacantLi = $("<li>").text(rep.name).addClass("vacant-li")
+                        repContainer.append(vacantLi)
+                    } else {
                     //create new li element for each representative. found by plugging in correspoding index to officials array
                     var repLi = $("<li>").text(data.officials[indicesArr[j]].name).addClass("rep-li");
 
                     //set variables to add info to each li to extract later when clicked
-                    var party = data.officials[indicesArr[j]].party;
-                    var phone = data.officials[indicesArr[j]].phones;
-                    var website = data.officials[indicesArr[j]].urls;
+                    var party = rep.party;
+                    var phone = rep.phones;
+                    var website = rep.urls;
 
                     //append attributes to new li
                     repLi.attr("data-party", party);
@@ -52,7 +58,7 @@ let representativesApi = function (scope) {
                     repLi.attr("data-website", website);
 
                     //loop thru 'channels' array (if there is one) to get first 2 socials
-                    var socials = data.officials[indicesArr[j]].channels
+                    var socials = rep.channels
 
                     if (socials) {
                         var socialNum = 1
@@ -68,11 +74,10 @@ let representativesApi = function (scope) {
                             socialNum++;
                         }
                     }
-
                     //append new li to corresponding container
                     repContainer.append(repLi);
-
                 }
+            }
             }
 
         })
@@ -80,7 +85,13 @@ let representativesApi = function (scope) {
 
 
 //make representative li clickable
+
 $(".result").on("click", "li", function () {
+    if ($(this).text()=="VACANT") {
+        return
+    } else {
+       
+    
     //extract data attributes and append to modal
 
     //title
@@ -119,10 +130,13 @@ $(".result").on("click", "li", function () {
 
     //trigger modal
     $("#rep-modal").addClass("is-active");
+    }
 })
 
 
+
 //get news articles with person's name
+
 var getNews = function (name) {
 
     var apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${name}&election&sort=relevance&news_desk=politics&type_of_material=news&api-key=0LjGSIV1PXpRyRsQkYxlhQe10ryACGHV`;
