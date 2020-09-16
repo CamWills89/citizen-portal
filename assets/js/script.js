@@ -4,7 +4,7 @@
 
 //THINGS TO FIX
 //error modal text color change
-//VACANT bug (empty certain divs)
+//error handling for empty storage when menu button is clicked instead of main buttons
 
 //REPRESENTATIVES section
 

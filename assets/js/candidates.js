@@ -25,7 +25,7 @@ let representativesApi = function (scope) {
         })
         .then(function (data) {
             console.log(data);
-            
+
             //loop thru office titles
             for (let i = 0; i < data.offices.length; i++) {
                 officesIndex = data.offices[i];
@@ -39,45 +39,48 @@ let representativesApi = function (scope) {
                 var indicesArr = data.offices[i].officialIndices;
                 //loop thru all representatives holding the office title
                 for (let j = 0; j < indicesArr.length; j++) {
+
                     var rep = data.officials[indicesArr[j]]
-                    if (rep.name=="VACANT") {
+
+                    //if name is VACANT, don't attach any info
+                    if (rep.name == "VACANT") {
                         var vacantLi = $("<li>").text(rep.name).addClass("vacant-li")
                         repContainer.append(vacantLi)
                     } else {
-                    //create new li element for each representative. found by plugging in correspoding index to officials array
-                    var repLi = $("<li>").text(data.officials[indicesArr[j]].name).addClass("rep-li");
+                        //create new li element for each representative. found by plugging in correspoding index to officials array
+                        var repLi = $("<li>").text(rep.name).addClass("rep-li");
 
-                    //set variables to add info to each li to extract later when clicked
-                    var party = rep.party;
-                    var phone = rep.phones;
-                    var website = rep.urls;
+                        //set variables to add info to each li to extract later when clicked
+                        var party = rep.party;
+                        var phone = rep.phones;
+                        var website = rep.urls;
 
-                    //append attributes to new li
-                    repLi.attr("data-party", party);
-                    repLi.attr("data-phone", phone);
-                    repLi.attr("data-website", website);
+                        //append attributes to new li
+                        repLi.attr("data-party", party);
+                        repLi.attr("data-phone", phone);
+                        repLi.attr("data-website", website);
 
-                    //loop thru 'channels' array (if there is one) to get first 2 socials
-                    var socials = rep.channels
+                        //loop thru 'channels' array (if there is one) to get first 2 socials
+                        var socials = rep.channels
 
-                    if (socials) {
-                        var socialNum = 1
-                        for (k = 0; k < socials.length; k++) {
+                        if (socials) {
+                            var socialNum = 1
+                            for (k = 0; k < socials.length; k++) {
 
-                            var socialType = socials[k].type;
-                            var socialID = socials[k].id;
+                                var socialType = socials[k].type;
+                                var socialID = socials[k].id;
 
-                            //append to new li
-                            repLi.attr("data-socialType-" + socialNum, socialType);
-                            repLi.attr("data-socialID-" + socialNum, socialID);
+                                //append to new li
+                                repLi.attr("data-socialType-" + socialNum, socialType);
+                                repLi.attr("data-socialID-" + socialNum, socialID);
 
-                            socialNum++;
+                                socialNum++;
+                            }
                         }
+                        //append new li to corresponding container
+                        repContainer.append(repLi);
                     }
-                    //append new li to corresponding container
-                    repContainer.append(repLi);
                 }
-            }
             }
 
         })
@@ -87,11 +90,7 @@ let representativesApi = function (scope) {
 //make representative li clickable
 
 $(".result").on("click", "li", function () {
-    if ($(this).text()=="VACANT") {
-        return
-    } else {
-       
-    
+
     //extract data attributes and append to modal
 
     //title
@@ -130,7 +129,7 @@ $(".result").on("click", "li", function () {
 
     //trigger modal
     $("#rep-modal").addClass("is-active");
-    }
+
 })
 
 
