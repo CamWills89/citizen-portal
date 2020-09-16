@@ -197,9 +197,9 @@ color: red;
 .new-li {
     list-style: none;
     padding: 5px;
-    width: 25%;
+    /* width: 25%; */
     text-align: center;
-    margin: auto;
+    /* margin: auto; */
     /* border-style: outset;
     border-color: lightgoldenrodyellow;
     border-radius: 20px; */

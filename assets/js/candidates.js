@@ -149,10 +149,14 @@ $(".result").on("click", "li", function () {
                     $(".articles").append(newP)
 
                 }
+                if(!$(".articles").children("li")) {
+                    $(".articles").append($("<p>").text("no articles at this time"))
+                }
             }
 
 
             //if there are no p's in .articles div, say "there's nothing"
+          
             //     $(this).append($("<p>").text("no articles at this time"))
             //     console.log("HERE");
             // }
