@@ -47,3 +47,4 @@ Then I am presented with general information and relevant news articles about th
 [Live URL](https://teamgreeenlantern.github.io/voting-app/)
 
 [Github repository](https://github.com/TeamGreeenLantern/voting-app)
+

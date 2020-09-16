@@ -2,55 +2,115 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voter Information</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css"
-        integrity="sha512-ADrqa2PY1TZtb/MoLZIZu/Z/LlPaWQeDMBV73EMwjGam43/JJ5fqW38Rq8LJOVGCDfrJeOMS3Q/wRUVzW5DkjQ=="
-        crossorigin="anonymous" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Election Information</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css"
+    integrity="sha512-ADrqa2PY1TZtb/MoLZIZu/Z/LlPaWQeDMBV73EMwjGam43/JJ5fqW38Rq8LJOVGCDfrJeOMS3Q/wRUVzW5DkjQ=="
+    crossorigin="anonymous" />
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 
 <body>
-    <h1>Upcoming Elections in the US</h1>
 
-    <div class="election-display">
-        <h2 class="election-name"></h2>
-        <p class="election-day"></p>
-    </div>
-
-    <div class="modal" id="news-modal">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-            <header class="modal-card-head">
-                <p class="modal-card-title"></p>
-                <button class="delete" id="news-modal-delete" aria-label="close"></button>
-            </header>
-            <section class="modal-card-body">
-                <!--Content...-->
-                <h2>Lastest news articles from NYT</h2>
-                <div id="news-modal">
-                    <div class="news"></div>
-                </div>
-            </section>
-            <footer class="modal-card-foot"></footer>
+  <section class="hero is-link is-mobile">
+    <!-- Hero head: will stick at the top -->
+    <div class="hero-head">
+      <nav class="navbar">
+        <div class="container">
+          <div class="navbar-brand">
+            <span class="navbar-burger burger" data-target="navbarMenuHeroA">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </div>
+          <div id="navbarMenuHeroA" class="navbar-menu">
+            <div class="navbar-end">
+              <a href="index.html" class="navbar-item">
+                Home
+              </a>
+              <a href="candidates.html" class="navbar-item">
+                Representatives
+              </a>
+              <a href="voting.html" class="navbar-item">
+                Election Information
+              </a>
+            </div>
+          </div>
         </div>
+      </nav>
     </div>
+
+    <!-- Hero content: will be in the middle -->
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 id="voting-title">Upcoming Elections in the US</h1>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="rep-container">
+    <div class="election-display">
+      <h2 id="election-name" class="election-name">
+        <!-- The below code adds caret symbol. Do not know how to get it inline with generated results??? -->
+        <!-- <i class="fas fa-caret-right"></i>  -->
+      </h2>
+      <p class="election-day"></p>
+    </div>
+
     <div class="voter-info">
-        <h3 class="website-name"></h3>
-        <a class="website-link"></a>
+      <br>
+      <h3 class="website-name"></h3>
+      <a class="website-link"></a>
     </div>
+  </div>
+  <footer class="voter-footer">
+    <button id="registerBtn" onclick="window.location.href='https://register.rockthevote.com/?partner=38861'">Register
+      to Vote
+    </button>
+  </footer>
 
-    <div>
-        <h3>Register to Vote Below</h3>
-        <button><a href="https://register.rockthevote.com/?partner=38861" target="_blank">Register to Vote
-            </a></button>
+  <div class="modal" id="news-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title"></p>
+        <button class="delete" id="news-modal-delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <!--Content...-->
+        <h2 class="news-header">Lastest News Articles From NYtimes</h2>
+        <div id="news-modal">
+          <div class="news"></div>
+        </div>
+      </section>
+      <footer class="modal-card-foot"></footer>
     </div>
+  </div>
+  <!--error modal-->
+  <div class="modal" id="error-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Error</p>
+      </header>
+      <section class="modal-card-body">
+        <p id="error-text">There was a problem with your request. Please make sure you entered a valid address</p>
+        <button class="scopeBtn">
+          <a href="index.html" id="btn-text">Go home</a>
+        </button>
+      </section>
+    </div>
+  </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
-        integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg=="
-        crossorigin="anonymous"></script>
-    <script src="/assets/js/voting.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+    integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg=="
+    crossorigin="anonymous"></script>
+  <script src="assets/js/voting.js"></script>
 </body>
 
 </html>
