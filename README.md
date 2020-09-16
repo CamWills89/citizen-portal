@@ -35,9 +35,15 @@ When I select a representative
 Then I am presented with general information and relevant news articles about the representative if available.
 
 ### Screenshot
+![Home](https://user-images.githubusercontent.com/68020747/93384457-798fbf00-f82a-11ea-8ea8-6e9c847385af.PNG)
+![Election info page](https://user-images.githubusercontent.com/68020747/93384493-857b8100-f82a-11ea-8b69-8ba745c40a79.PNG)
+![election news modal](https://user-images.githubusercontent.com/68020747/93384500-86acae00-f82a-11ea-8e5a-64d3f4fd1ac5.PNG)
+![Representatives page](https://user-images.githubusercontent.com/68020747/93384505-890f0800-f82a-11ea-8931-faa526870076.PNG)
+![National scope](https://user-images.githubusercontent.com/68020747/93384508-8a403500-f82a-11ea-825e-ef073897cc73.PNG)
+![Representatives modal](https://user-images.githubusercontent.com/68020747/93384513-8ad8cb80-f82a-11ea-9c5e-7459db55dee4.PNG)
 
 ### Link
 
-[Live URL]()
+[Live URL](https://teamgreeenlantern.github.io/voting-app/)
 
-[Github repository]()
+[Github repository](https://github.com/TeamGreeenLantern/voting-app)
