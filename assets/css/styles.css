@@ -94,7 +94,7 @@ p {
 }
 
 li,
-.election-day {
+.election-day, #btn-text {
     color: #fff;
 }
 
@@ -111,11 +111,11 @@ li,
     color: lightseagreen;
 }
 
-#modal-card-background {
+.modal-card-background {
     background-color: #fff;
 }
 
-#modal-card-title {
+.modal-card-title {
     color: gold;
 }
 
@@ -230,4 +230,8 @@ h3 {
 
 .rep-info {
     padding-bottom: 15px;
+}
+
+#error-text {
+    color: black;
 }

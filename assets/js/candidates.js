@@ -21,11 +21,23 @@ let representativesApi = function (scope) {
 
     fetch(apiUrl)
         .then(function (response) {
+            //error handling
+            if (!response.ok) {
+                if(response.status<=499) {
+                console.log(response.status);
+                $("#error-modal").addClass("is-active")
+                return
+                } else if(response.status>=500) {
+                    $("#error-modal").empty()
+                    $("#error-modal").addClass("is-active").text("unable to connect to server")
+                return
+                }
+                
+            } 
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
-
+            
             //loop thru office titles
             for (let i = 0; i < data.offices.length; i++) {
                 officesIndex = data.offices[i];
@@ -142,6 +154,19 @@ var getNews = function (name) {
 
     fetch(apiUrl)
         .then(function (response) {
+              //error handling
+              if (!response.ok) {
+                if(response.status<=499) {
+                console.log(response.status);
+                $("#error-modal").addClass("is-active")
+                return
+                } else if(response.status>=500) {
+                    $("#error-modal").empty()
+                    $("#error-modal").addClass("is-active").text("unable to connect to server")
+                return
+                }
+                
+            } 
             return response.json();
         })
         .then(function (data) {
@@ -171,8 +196,8 @@ var getNews = function (name) {
 //bulma-related click functions
 
 //make x button on modal exit out of modal
-$("#repMod-delete").on("click", function () {
-    $("#rep-modal").removeClass("is-active");
+$(".delete").on("click", function () {
+    $(".modal").removeClass("is-active");
 })
 
 //toggling the hamburger menu
