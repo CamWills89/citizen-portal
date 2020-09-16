@@ -4,6 +4,7 @@
 
 //THINGS TO FIX
 //error modal text color change
+//VACANT bug (empty certain divs)
 
 //REPRESENTATIVES section
 

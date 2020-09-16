@@ -31,54 +31,48 @@ let representativesApi = function (scope) {
                 //append each office title to page
                 var repContainer = $("<div>").addClass("rep-container");
                 $(".result").append(repContainer);
-                var officeTitle = $(repContainer).append($("<p>").text(officesIndex.name));
+                $(repContainer).append($("<p>").text(officesIndex.name));
 
-                if (data.offices[i].officialIndices) {
 
-                    var indicesArr = data.offices[i].officialIndices;
-                    //loop thru all representatives holding the office title
-                    for (let j = 0; j < indicesArr.length; j++) {
+                var indicesArr = data.offices[i].officialIndices;
+                //loop thru all representatives holding the office title
+                for (let j = 0; j < indicesArr.length; j++) {
 
-                        //create new li element for each representative. found by plugging in correspoding index to officials array
-                        var newLi = $("<li>").text(data.officials[indicesArr[j]].name).addClass("new-li");
+                    //create new li element for each representative. found by plugging in correspoding index to officials array
+                    var repLi = $("<li>").text(data.officials[indicesArr[j]].name).addClass("rep-li");
 
-                        //set variables to add info to each li to extract later when clicked
-                        var party = data.officials[indicesArr[j]].party;
-                        var phone = data.officials[indicesArr[j]].phones;
-                        var website = data.officials[indicesArr[j]].urls;
+                    //set variables to add info to each li to extract later when clicked
+                    var party = data.officials[indicesArr[j]].party;
+                    var phone = data.officials[indicesArr[j]].phones;
+                    var website = data.officials[indicesArr[j]].urls;
 
-                        //append attributes to new li
-                        newLi.attr("data-party", party);
+                    //append attributes to new li
+                    repLi.attr("data-party", party);
+                    repLi.attr("data-phone", phone);
+                    repLi.attr("data-website", website);
 
-                        newLi.attr("data-phone", phone);
+                    //loop thru 'channels' array (if there is one) to get first 2 socials
+                    var socials = data.officials[indicesArr[j]].channels
 
-                        newLi.attr("data-website", website);
+                    if (socials) {
+                        var socialNum = 1
+                        for (k = 0; k < socials.length; k++) {
 
-                        //loop thru 'channels' array (if there is one) to get first 2 socials
-                        if (data.officials[indicesArr[j]].channels) {
-                            var socialNum = 1
-                            for (k = 0; k < data.officials[indicesArr[j]].channels.length; k++) {
+                            var socialType = socials[k].type;
+                            var socialID = socials[k].id;
 
-                                var socialType = data.officials[indicesArr[j]].channels[k].type;
-                                var socialID = data.officials[indicesArr[j]].channels[k].id;
+                            //append to new li
+                            repLi.attr("data-socialType-" + socialNum, socialType);
+                            repLi.attr("data-socialID-" + socialNum, socialID);
 
-                                //append to new li
-                                newLi.attr("data-socialType-" + socialNum, socialType);
-                                newLi.attr("data-socialID-" + socialNum, socialID);
-
-                                socialNum++;
-                            }
+                            socialNum++;
                         }
-
-
-                        //append new li to corresponding office title
-                        repContainer.append(newLi);
-
-
                     }
 
-                }
+                    //append new li to corresponding container
+                    repContainer.append(repLi);
 
+                }
             }
 
         })
@@ -87,27 +81,29 @@ let representativesApi = function (scope) {
 
 //make representative li clickable
 $(".result").on("click", "li", function () {
-
     //extract data attributes and append to modal
+
+    //title
     $(".modal-card-title").text($(this).text());
 
+    //party
     $("#party").empty();
     $("#party").text("Party: " + $(this).attr("data-party"));
 
-    //empty website p
+    //website
     $("#website").empty();
-
     var url = $(this).attr("data-website");
     if (url) {
         $("#website").append($("<a>").attr("href", url).text("Website: " + url));
     }
 
+    //phone
+    $("#phone").empty()
     $("#phone").text($(this).attr("data-phone"));
 
-    //empty socials p's 
+    //socials
     $("#socialOne").text("");
     $("#socialTwo").text("");
-
     //extract socials data attributes if they exist, append to modal
     if ($(this).attr("data-socialType-1")) {
         $("#socialOne").text($(this).attr("data-socialType-1") + ": " + $(this).attr("data-socialID-1"));
@@ -116,6 +112,7 @@ $(".result").on("click", "li", function () {
         $("#socialTwo").text($(this).attr("data-socialType-2") + ": " + $(this).attr("data-socialID-2"));
     }
 
+    //create name variable to pass to getNews function
     var name = $(this).text().split(" ").join("-");
 
     getNews(name)
@@ -124,9 +121,10 @@ $(".result").on("click", "li", function () {
     $("#rep-modal").addClass("is-active");
 })
 
+
 //get news articles with person's name
 var getNews = function (name) {
-    
+
     var apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${name}&election&sort=relevance&news_desk=politics&type_of_material=news&api-key=0LjGSIV1PXpRyRsQkYxlhQe10ryACGHV`;
 
     fetch(apiUrl)
@@ -148,7 +146,7 @@ var getNews = function (name) {
                 if (headline.includes(firstName) && headline.includes(lastName)) {
 
                     var articleUrl = data.response.docs[i].web_url;
-                    newP.append($("<a>").attr("href", articleUrl).attr("target", "_blank").text(data.response.docs[i].headline.main).addClass("article-link"));
+                    newP.append($("<a>").attr("href", articleUrl).attr("target", "_blank").text(headline).addClass("article-link"));
                     newP.addClass("article-title");
 
                     $(".articles").append(newP);
@@ -157,11 +155,12 @@ var getNews = function (name) {
         })
 }
 
+//bulma-related click functions
+
 //make x button on modal exit out of modal
 $("#repMod-delete").on("click", function () {
     $("#rep-modal").removeClass("is-active");
 })
-
 
 //toggling the hamburger menu
 $(document).ready(function () {

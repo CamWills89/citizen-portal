@@ -177,14 +177,14 @@ h3 {
     width: 100%
 }
 
-.new-li {
+.rep-li {
     list-style: none;
     padding: 5px;
     text-align: center;
     margin: auto;
 }
 
-.new-li:hover,
+.rep-li:hover,
 .website-link:hover {
     cursor: pointer;
     border-color: lightgray;
