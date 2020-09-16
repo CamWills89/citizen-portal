@@ -33,9 +33,9 @@ let representativesApi = function (scope) {
                 var repContainer = $("<div>").addClass("rep-container")
                 $(".result").append(repContainer)
                 var officeTitle = $(repContainer).append($("<p>").text(officesIndex.name))
-                
+
                 if (data.offices[i].officialIndices) {
-    
+
                     var indicesArr = data.offices[i].officialIndices
                     //loop thru all representatives holding the office title
                     for (let j = 0; j < indicesArr.length; j++) {
@@ -71,12 +71,12 @@ let representativesApi = function (scope) {
                                 socialNum++
                             }
                         }
-                        
+
 
                         //append new li to corresponding office title
-                        
                         repContainer.append(newLi)
-                        
+
+
                     }
 
                 }
@@ -133,6 +133,7 @@ $(".result").on("click", "li", function () {
             console.log(data);
 
             $(".articles").empty()
+            
 
             for (i = 0; i < data.response.docs.length; i++) {
                 var newP = $("<p>")
@@ -141,23 +142,16 @@ $(".result").on("click", "li", function () {
                 var lastName = nameSplit[nameSplit.length - 1]
 
                 if (data.response.docs[i].headline.main.includes(firstName) && data.response.docs[i].headline.main.includes(lastName)) {
-                    newP.text(data.response.docs[i].headline.main)
+
                     var articleUrl = data.response.docs[i].web_url
-                    newP.append($("<a>").attr("href", articleUrl).attr("target", "_blank").text(articleUrl).addClass("article-link"))
+                    newP.append($("<a>").attr("href", articleUrl).attr("target", "_blank").text(data.response.docs[i].headline.main).addClass("article-link"))
                     newP.addClass("article-title")
 
                     $(".articles").append(newP)
 
-                }
+                } 
             }
-
-
-            //if there are no p's in .articles div, say "there's nothing"
-            //     $(this).append($("<p>").text("no articles at this time"))
-            //     console.log("HERE");
-            // }
-
-
+            
             //trigger modal
             $("#rep-modal").addClass("is-active")
         })
@@ -169,10 +163,15 @@ $("#repMod-delete").on("click", function () {
 })
 
 
-//blur
-// $(".modal").on("click", function(event){
-//     if(event.target!==$(this)) {
-//         $(".modal").removeClass("is-active")
-//     }
-// })
+// Check for click events on the navbar burger icon
+$(document).ready(function () {
 
+    // Check for click events on the navbar burger icon
+    $(".navbar-burger").click(function () {
+
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        $(".navbar-burger").toggleClass("is-active");
+        $(".navbar-menu").toggleClass("is-active");
+
+    });
+});

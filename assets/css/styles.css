@@ -15,26 +15,16 @@
    #address-label {
        color: white;
        font-weight: bold;
-       font-size: medium;
+       font-size: x-large;
        
    }
 
    #buttons-bottom {
-    position: absolute;
     bottom: 2%;
     width: 100%;
-    
    }
-   .scopeBtn {
-    border-radius: 12px;
-    cursor: pointer;
-    outline: none;
-    color: #fff;
-    background-color: green;
-    border: none;
-    box-shadow: 0px 5px 0 1px #999;
-    margin: 1%;
-   }
+   
+   
 
    .scopeBtn:hover {
     background-color: lightskyblue;
@@ -53,7 +43,7 @@ transform: translateY(1px);
     cursor: pointer;
     outline: none;
     color: #fff;
-    background-color:slateblue;
+    background-color: #5573d8;
     border: none;
     box-shadow: 0px 9px #999;
     margin-bottom: 5%;
@@ -70,7 +60,6 @@ box-shadow: 0 5px #666;
 transform: translateY(4px);
 }
 
-  
    #representative-btn {
     height: 80px;
     width: 150px;
@@ -78,13 +67,15 @@ transform: translateY(4px);
     cursor: pointer;
     outline: none;
     color: #fff;
-    background-color:slateblue;
+    background-color:#5573d8;
     border: none;
     box-shadow: 0 9px #999;
     margin-bottom: 5%;
     margin-left: 10%;
-
+    /* margin: 30px */
 }
+
+
 #representative-btn:hover {
     background-color: lightskyblue;
 }
@@ -95,24 +86,36 @@ box-shadow: 0 5px #666;
 transform: translateY(4px);
 }
 
-
+.scopeBtn, #registerBtn {
+    height: 40px;
+    width: 80px;
+    border-radius: 12px;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color:#5573d8;
+    border: none;
+    box-shadow: 0 5px #999;
+}
 #select-scope {
     color: white;
     font-weight: bold;
     font-size: larger;
 }
 
+
 p {
 color: moccasin;
 font-size: large;
 /*P tag is used becuase I cannot seem to modify results being returned from apis without being as vauge as possible with scope of selectors affecting modals as well regardless of conflicting selectors*/
 }
+
 li {
     color: white;
 }
 
-.modal-card-head {
-    background-color: #5573d8;
+.modal-card-head, .modal-card-foot {
+    background-color: #0971f8;
     
 }
 
@@ -123,10 +126,6 @@ li {
     background-color:white;
 }
 
-.modal-card-foot{
-    background-color: #5573d8;
-}
-
 #modal-card-title  {
     color: gold;
 }
@@ -134,20 +133,28 @@ li {
 #voting-title {
     color: white;
     font-weight: bold;
-    font-size: medium
+    font-size: xx-large;
 }
 /* This text color will not change */
-#election-name {
-    color: red ;
+/* #election-name {
+    color: red ;  */
+ 
+h2, .website-link {
+    color:moccasin;
 }
-h2 {
-    color:silver;
+.news-header {
+    color:slategray;
+    font-size: x-large;
+    /* background-color: #5573d8 */
+    border-bottom: solid 1px slategray;
+    padding: 10px 10px 0 10px;
+    text-align: center;
 }
 h3 {
     color: silver;
 }
 
-#registerBtn {
+/* #registerBtn {
     margin: 1%;
     border-radius: 12px;
     cursor: pointer;
@@ -156,7 +163,7 @@ h3 {
     background-color: green;
     border: none;
     box-shadow: 0 5px #999;
-   }
+   } */
 
    #registerBtn:hover {
     background-color: lightseagreen;
@@ -177,10 +184,13 @@ transform: translateY(3px);
 
 .article-title {
 color: green;
+text-align: center;
+padding: 5px;
 }
 
 .article-link {
-color: red;
+color: lightseagreen ;
+padding: 5px;
 }
 
 .result {
@@ -201,7 +211,7 @@ color: red;
 .new-li {
     list-style: none;
     padding: 5px;
-    width: 25%;
+    /* width: 25%; */
     text-align: center;
     margin: auto;
     /* border-style: outset;
@@ -209,17 +219,15 @@ color: red;
     border-radius: 20px; */
 }
 
-.new-li:hover {
+.new-li:hover, .website-link:hover {
     cursor: pointer;
     border-color: lightgray;
-    color: lightgreen;
+    color: lightskyblue;
     font-weight: bold;
 }
 
-
-
 .candidate-scope {
-    width: 50%;
+    /* width: 70%; */
     margin: auto;
     text-align: center;
 }
@@ -232,7 +240,7 @@ color: red;
 
 .election-header:hover {
     cursor: pointer;
-    color: lightgreen;
+    color: lightskyblue;
 }
 
 .election-footer {
@@ -243,4 +251,24 @@ color: red;
     width: 90%;
     margin: auto;
     text-align: center;
+}
+
+.navbar-item {
+    text-align: center;
+}
+
+#address {
+    border: 3px solid  #5573d8;
+}
+
+#address-form {
+    margin: 20px;
+}
+
+.rep-info {
+    padding-bottom: 15px;
+}
+
+.election-day {
+    color: white;
 }
