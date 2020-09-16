@@ -38,6 +38,8 @@ let electionDisplay = function () {
           "dddd, MMMM, Do, YYYY");
 
         let electionDay = document.createElement("p");
+        electionDay.classList.add("election-day");
+
         electionDay.textContent = electionDate;
         electionDayContainerEl.appendChild(electionDay);
       }
@@ -109,11 +111,10 @@ let displayNewsHandler = function (event) {
       for (let i = 0; i < 5; i++) {
         let newsArticles = document.createElement("p");
         newsArticles.classList.add("article-title");
-        newsArticles.innerHTML = data.response.docs[i].headline.main;
 
         let articleUrl = document.createElement("a");
         let articleUrlLink = data.response.docs[i].web_url
-        articleUrl.innerHTML = articleUrlLink;
+        articleUrl.innerHTML = data.response.docs[i].headline.main;
         articleUrl.classList.add("article-link");
         articleUrl.setAttribute("href", articleUrlLink);
         articleUrl.setAttribute("target", "_blank");
@@ -140,5 +141,17 @@ modalEl.addEventListener("click", function (event) {
     modalEl.classList.remove("is-active")
   }
 })
+
+$(document).ready(function() {
+
+  // Check for click events on the navbar burger icon
+  $(".navbar-burger").click(function() {
+
+      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+      $(".navbar-burger").toggleClass("is-active");
+      $(".navbar-menu").toggleClass("is-active");
+
+  });
+});
 
 electionDisplay();
