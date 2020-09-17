@@ -2,21 +2,20 @@
     box-sizing: border-box;
 }
 
-body, 
-html
-{
+body,
+html {
     background-image: url("https://www.ppt-backgrounds.net/images/patriotic-star--hd-atsmap--keynote-ppt-templates.jpg");
     background-position: center;
 }
 
 /*general element styles*/
-
 p {
     font-size: large;
 }
 
 li,
-.election-day, #btn-text {
+.election-day,
+#btn-text {
     color: #fff;
 }
 
@@ -31,7 +30,6 @@ h3 {
 }
 
 /* home page */
-
 #address {
     border: 3px solid #5573d8;
 }
@@ -47,7 +45,6 @@ h3 {
 }
 
 /* buttons */
-
 .scopeBtn:hover,
 #voting-search:hover,
 #representative-btn:hover {
@@ -95,7 +92,6 @@ h3 {
 }
 
 /*modal styles*/
-
 .modal-card-head,
 .modal-card-foot {
     background-color: #0971f8;
@@ -145,7 +141,6 @@ h3 {
 }
 
 /*representatives page*/
-
 .candidate-scope {
     margin: auto;
     text-align: center;
@@ -170,7 +165,8 @@ h3 {
     width: 100%
 }
 
-.rep-li, .vacant-li {
+.rep-li,
+.vacant-li {
     list-style: none;
     padding: 5px;
     text-align: center;
@@ -190,7 +186,6 @@ h3 {
 }
 
 /*election page*/
-
 .election-header,
 .voter-info {
     padding: 20px 0;

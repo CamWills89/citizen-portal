@@ -1,4 +1,4 @@
-//this JS file is for displaying election date and register to vote
+//query selectors
 let electionDayContainerEl = document.querySelector(".election-display");
 let voterInfoEl = document.querySelector(".voter-info");
 let websiteNameEl = document.querySelector(".website-name");
@@ -19,12 +19,12 @@ let electionDisplay = function () {
 
   fetch(apiUrl)
     .then(function (response) {
-        if (!response.ok) {
-          errorModalEl.classList.add("is-active");
-          return
-        }
-        return response.json();
-      
+      if (!response.ok) {
+        errorModalEl.classList.add("is-active");
+        return;
+      }
+      return response.json();
+
     })
     .then(function (data) {
 
@@ -42,7 +42,7 @@ let electionDisplay = function () {
 
         electionDay.textContent = electionDate;
         electionDayContainerEl.appendChild(electionDay);
-      }
+      };
 
       let voterApiUrl =
         `https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=${userAddress}&returnAllAvailableData=true&requestBody=true&electionId=7000&key=AIzaSyCaQylnKFXTaeh7o8Vuenj8LKnFkcr6nQE`;
@@ -51,9 +51,8 @@ let electionDisplay = function () {
           if (!response.ok) {
             errorModalEl.classList.add("is-active");
             return;
-            return
           }
-            return response.json();
+          return response.json();
 
         })
         .then(function (data) {
@@ -73,6 +72,7 @@ let electionDisplay = function () {
           voterInfoEl.appendChild(websiteNameEl);
           voterInfoEl.appendChild(websiteAddressElEl);
         })
+        //handle errors
         .catch(function (error) {
           errorModalEl.classList.add("is-active");
         });
@@ -86,7 +86,7 @@ let displayNewsHandler = function (event) {
     newsModalEl.classList.add("is-active");
   } else {
     return;
-  }
+  };
 
   let electionName = targetedModal.textContent;
   modalHeading.textContent = electionName;
@@ -99,8 +99,8 @@ let displayNewsHandler = function (event) {
       if (!response.ok) {
         errorModalEl.classList.add("is-active");
         return
-      }
-        return response.json();   
+      };
+      return response.json();
     })
     .then(function (data) {
       //first clear the old content
@@ -122,6 +122,7 @@ let displayNewsHandler = function (event) {
         newsModalContentEl.appendChild(articleUrl);
       }
     })
+    //handle errors
     .catch(function (error) {
       errorModalEl.classList.add("is-active");
     })
