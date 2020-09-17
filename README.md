@@ -46,7 +46,7 @@ Then I am presented with general information and relevant news articles about th
 
 ### Link
 
-[Live URL](https://teamgreeenlantern.github.io/voting-app/)
+[Live URL](https://teamgreeenlantern.github.io/citizen-portal/index.html)
 
-[Github repository](https://github.com/TeamGreeenLantern/voting-app)
+[Github repository](https://github.com/TeamGreeenLantern/citizen-portal)
 
