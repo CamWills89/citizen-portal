@@ -23,21 +23,20 @@ let representativesApi = function (scope) {
         .then(function (response) {
             //error handling
             if (!response.ok) {
-                if(response.status<=499) {
-                console.log(response.status);
-                $("#error-modal").addClass("is-active")
-                return
-                } else if(response.status>=500) {
-                    $("#error-modal").empty()
-                    $("#error-modal").addClass("is-active").text("unable to connect to server")
-                return
+                if (response.status <= 499) {
+                    $("#error-modal").addClass("is-active");
+                    return;
+                } else if (response.status >= 500) {
+                    $("#error-modal").empty();
+                    $("#error-modal").addClass("is-active").text("unable to connect to server");
+                    return;
                 }
-                
-            } 
+
+            }
             return response.json();
         })
         .then(function (data) {
-            
+
             //loop thru office titles
             for (let i = 0; i < data.offices.length; i++) {
                 officesIndex = data.offices[i];
@@ -52,12 +51,12 @@ let representativesApi = function (scope) {
                 //loop thru all representatives holding the office title
                 for (let j = 0; j < indicesArr.length; j++) {
 
-                    var rep = data.officials[indicesArr[j]]
+                    var rep = data.officials[indicesArr[j]];
 
                     //if name is VACANT, don't attach any info
                     if (rep.name == "VACANT") {
-                        var vacantLi = $("<li>").text(rep.name).addClass("vacant-li")
-                        repContainer.append(vacantLi)
+                        var vacantLi = $("<li>").text(rep.name).addClass("vacant-li");
+                        repContainer.append(vacantLi);
                     } else {
                         //create new li element for each representative. found by plugging in correspoding index to officials array
                         var repLi = $("<li>").text(rep.name).addClass("rep-li");
@@ -73,7 +72,7 @@ let representativesApi = function (scope) {
                         repLi.attr("data-website", website);
 
                         //loop thru 'channels' array (if there is one) to get first 2 socials
-                        var socials = rep.channels
+                        var socials = rep.channels;
 
                         if (socials) {
                             var socialNum = 1
@@ -120,7 +119,7 @@ $(".result").on("click", "li", function () {
     }
 
     //phone
-    $("#phone").empty()
+    $("#phone").empty();
     $("#phone").text($(this).attr("data-phone"));
 
     //socials
@@ -137,7 +136,7 @@ $(".result").on("click", "li", function () {
     //create name variable to pass to getNews function
     var name = $(this).text().split(" ").join("-");
 
-    getNews(name)
+    getNews(name);
 
     //trigger modal
     $("#rep-modal").addClass("is-active");
@@ -154,19 +153,18 @@ var getNews = function (name) {
 
     fetch(apiUrl)
         .then(function (response) {
-              //error handling
-              if (!response.ok) {
-                if(response.status<=499) {
-                console.log(response.status);
-                $("#error-modal").addClass("is-active")
-                return
-                } else if(response.status>=500) {
-                    $("#error-modal").empty()
-                    $("#error-modal").addClass("is-active").text("unable to connect to server")
-                return
+            //error handling
+            if (!response.ok) {
+                if (response.status <= 499) {
+                    $("#error-modal").addClass("is-active");
+                    return;
+                } else if (response.status >= 500) {
+                    $("#error-modal").empty();
+                    $("#error-modal").addClass("is-active").text("unable to connect to server");
+                    return;
                 }
-                
-            } 
+
+            }
             return response.json();
         })
         .then(function (data) {
@@ -179,7 +177,7 @@ var getNews = function (name) {
                 var firstName = nameSplit[0];
                 var lastName = nameSplit[nameSplit.length - 1];
 
-                var headline = data.response.docs[i].headline.main
+                var headline = data.response.docs[i].headline.main;
 
                 if (headline.includes(firstName) && headline.includes(lastName)) {
 

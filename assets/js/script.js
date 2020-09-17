@@ -56,21 +56,19 @@ $(document).ready(function () {
     });
 });
 
-$("#representatives").on("click", function(){
-    if(!localStorage.getItem("address")){
-        $("#error-modal").addClass("is-active")
+$("#representatives").on("click", function () {
+    if (!localStorage.getItem("address")) {
+        $("#error-modal").addClass("is-active");
     } else {
-        $(this).attr("href", "candidates.html")
+        $(this).attr("href", "candidates.html");
+    };
 
-    }
-    
-})
+});
 
-$("#election").on("click", function(){
-    if(!localStorage.getItem("address")){
-        $("#error-modal").addClass("is-active")
+$("#election").on("click", function () {
+    if (!localStorage.getItem("address")) {
+        $("#error-modal").addClass("is-active");
     } else {
-        $(this).attr("href", "voting.html")
-
-    }
-})
+        $(this).attr("href", "voting.html");
+    };
+});
