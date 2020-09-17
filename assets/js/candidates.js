@@ -24,7 +24,6 @@ let representativesApi = function (scope) {
             //error handling
             if (!response.ok) {
                 if (response.status <= 499) {
-                    console.log(response.status);
                     $("#error-modal").addClass("is-active");
                     return;
                 } else if (response.status >= 500) {
@@ -157,7 +156,6 @@ var getNews = function (name) {
             //error handling
             if (!response.ok) {
                 if (response.status <= 499) {
-                    console.log(response.status);
                     $("#error-modal").addClass("is-active");
                     return;
                 } else if (response.status >= 500) {
